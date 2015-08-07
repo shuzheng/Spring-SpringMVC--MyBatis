@@ -30,13 +30,13 @@
 	<!--contextConfigLocation在 ContextLoaderListener类中的默认值是 /WEB-INF/applicationContext.xml-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/spring.xml</param-value>
+		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	
 	<!-- 日志配置文件 -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+		<param-value>classpath:log4j.properties</param-value>
 	</context-param>
 	
 	<!-- springMVC的核心控制器 -->
@@ -46,7 +46,7 @@
 		<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里便是：springMVC-servlet.xml -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/classes/spring-mvc.xml</param-value>
+			<param-value>classpath:springMVC-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
