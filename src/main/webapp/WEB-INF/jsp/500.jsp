@@ -18,8 +18,9 @@
 	<p><!--页面将在<span id="stime">5</span>秒后-->跳转到<a href="${pageContext.request.contextPath}/">首页</a>！</p>
 </center>
 <%
-/**监控出错人的IP
-String ip = request.getHeader(" x-forwarded-fo r");
+/**
+监控出错人的IP
+String ip = request.getHeader(" x-forwarded-for");
 if (ip == null || ip.length() == 0 || " unknown".equalsIgnoreCase(ip)) {
 	ip = request.getHeader(" Proxy-Client-IP"); // 获取代理ip
 }

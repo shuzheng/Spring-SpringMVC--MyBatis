@@ -44,7 +44,7 @@ public class HelloController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping
+	@RequestMapping("/index")
 	public String index() {
 		// 视图渲染，/WEB-INF/jsp/hello/world.jsp
 		return "hello/world";
