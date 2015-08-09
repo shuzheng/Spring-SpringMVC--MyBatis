@@ -47,7 +47,15 @@
 		</property>
 		<property name="defaultViews">
 			<list>
-				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+					<!-- 支持jsonp，访问如http://localhost:8080/json?callback=callback即可得到JSONP响应：callback({"user":{"id":1,"name":"zhangsan"}}); -->
+					<property name="jsonpParameterNames">
+						<set>
+							<value>jsonp</value>
+							<value>callback</value>
+						</set>
+					</property>
+				</bean>
 			</list>
 		</property>
 	</bean>

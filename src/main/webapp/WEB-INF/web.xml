@@ -28,10 +28,10 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!--contextConfigLocation在 ContextLoaderListener类中的默认值是 /WEB-INF/applicationContext.xml-->
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
-	</context-param>
+	</context-param> -->
 	
 	<!-- 日志配置文件 -->
 	<context-param>
@@ -44,16 +44,26 @@
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里便是：springMVC-servlet.xml -->
-		<init-param>
+		<!-- <init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:springMVC-servlet.xml</param-value>
-		</init-param>
+		</init-param> -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
 		<!-- 这里可以用 / 但不能用 /* ，拦截了所有请求会导致静态资源无法访问，所以要在springMVC-servlet.xml中配置mvc:resources -->  
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 	
 	<!-- session配置 -->

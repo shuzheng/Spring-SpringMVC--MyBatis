@@ -1,12 +1,12 @@
 package com.shuzheng.ssm.model;
 
-import java.util.Date;
 
 /**
  * 
  * 用户
+ * 
  * @author shuzheng
- *
+ * 
  */
 public class User {
 
@@ -14,8 +14,8 @@ public class User {
 	private String username;
 	private String password;
 	private String nickname;
-	private Integer age;
-	private Date birthday;
+	private Integer sex;
+	private long ctime;
 
 	public Integer getId() {
 		return id;
@@ -49,20 +49,20 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Integer getSex() {
+		return sex;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setSex(Integer sex) {
+		this.sex = sex;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public long getCtime() {
+		return ctime;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setCtime(long ctime) {
+		this.ctime = ctime;
 	}
 
 }
