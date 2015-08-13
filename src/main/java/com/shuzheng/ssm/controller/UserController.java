@@ -2,6 +2,7 @@ package com.shuzheng.ssm.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,21 +16,13 @@ public class UserController {
 
 	private static Log log = LogFactory.getLog(UserController.class);
 
+	@Autowired
 	private IUserService userService;
-
-	public IUserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
 
 	@RequestMapping("/index")
 	public @ResponseBody
 	User index() throws Exception {
-		IUserService s = userService;
-		User user = s.geUserById(1);
+		User user = userService.geUserById(1);
 		return user;
 	}
 

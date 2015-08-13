@@ -1,18 +1,20 @@
 package com.shuzheng.ssm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shuzheng.ssm.dao.IUserDao;
+import com.shuzheng.ssm.dao.UserMapper;
 import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.IUserService;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 
-	private IUserDao userDao;
+	private UserMapper userDao;
 
-	public IUserDao getUserDao() {
-		return userDao;
+	@Autowired
+	public void setUserDao(UserMapper userDao) {
+		this.userDao = userDao;
 	}
 
 	@Override
