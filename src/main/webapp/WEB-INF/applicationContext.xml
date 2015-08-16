@@ -16,6 +16,10 @@
 
 	<!-- 自动扫描组件 -->
 	<context:component-scan base-package="com.shuzheng.ssm.service"/>
+	<!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在springMVC-servlet.xml中配置的，如果不去除会影响事务管理的。-->
+	<!--<context:component-scan base-package="com.shuzheng.ssm">
+		<context:exclude-filter type="regex" expression="com.shuzheng.ssm.controller.*"/>
+	</context:component-scan>-->
 	
 	<!-- 引入jdbc配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
@@ -46,15 +50,18 @@
 		<property name="filters" value="stat" />
 	</bean>
 
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:com/shuzheng/ssm/dao/*.xml" />
 	</bean>
+	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.shuzheng.ssm.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
+	<!-- 下面是配置声明式事务管理的，个人感觉比用注解管理事务要简单方便 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -82,58 +89,29 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.shuzheng.ssm.service.*Service.*(..))" />
-		<aop:advisor pointcut-ref="transactionPointcut"
-			advice-ref="transactionAdvice" />
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.shuzheng.ssm.service.impl.*Service.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
 	
-	<!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在springMVC-servlet.xml中配置的，如果不去除会影响事务管理的。-->
-	<!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
-	<!--<context:component-scan base-package="com.shuzheng.ssm">
-		<context:exclude-filter type="regex" expression="com.shuzheng.ssm.controller.*"/>
-	</context:component-scan>-->
-
-	<!-- 数据源 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driver}"/>
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-	</bean> -->
+	<!-- 可通过注解控制事务 -->
+	<tx:annotation-driven/>
 	
-	<!-- 创建SqlSessionFactory，同时指定数据源 -->
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-	</bean> -->
-	
-	<!-- 下面是配置声明式事务管理的，个人感觉比用注解管理事务要简单方便 -->
 	<!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean> -->
-	
 	<!-- 通过AOP配置提供事务增强，让service包下所有bean的所有方法拥有事务 -->
 	<!-- <aop:config proxy-target-class="true">
 		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.*Service..*(..))" advice-ref="txAdvice"/>
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="query*" read-only="true"/>
 			<tx:method name="find*" read-only="true"/>
 			<tx:method name="load*" read-only="true"/>
 			<tx:method name="*" rollback-for="Exception"/>
-			
 			 <tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice> -->
-	
-	<!-- 可通过注解控制事务 -->
-	<!-- <tx:annotation-driven/> -->
-	
-	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
-	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.shuzheng.ssm.mapper"/>
-	</bean> -->
 	
 </beans>
