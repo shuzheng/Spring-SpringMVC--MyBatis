@@ -1,23 +1,19 @@
 package com.shuzheng.ssm.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shuzheng.ssm.model.User;
-import com.shuzheng.ssm.service.impl.UserServiceImpl;
+import com.shuzheng.ssm.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-	private static Log log = LogFactory.getLog(UserController.class);
-
+	
 	@Autowired
-	private UserServiceImpl userService;
+	private IUserService<User> userService;
 
 	@RequestMapping("/index")
 	public @ResponseBody User index() throws Exception {
@@ -31,8 +27,8 @@ public class UserController {
 			u.setPassword("123456");
 			u.setSex(1);
 			u.setUsername("username" + i);
+			
 			userService.save(u);
-			u = null;
 		}
 		
 		return user;
