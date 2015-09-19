@@ -56,7 +56,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!--  -->
+	<!-- Druid连接池监控页面 -->
 	<servlet>
 		<servlet-name>DruidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>

@@ -15,7 +15,7 @@
 	<!-- 启动注解驱动的springMVC功能[建议加上] declares support for general annotations such as @Required, @Autowired, @PostConstruct, and so on. -->
 	<context:annotation-config/>
 	
-	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数[可选] -->
+	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数[可选] 在SpringMVC中使用JSON必须配置 -->
 	<!-- 相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。即解决了@Controller注解的使用前提配置 -->
 	<!-- is actually rather pointless. It declares explicit support for annotation-driven MVC controllers (i.e.@RequestMapping, @Controller, etc), even though support for those is the default behaviour. -->
 	<mvc:annotation-driven/>

@@ -18,20 +18,20 @@ public class UserController {
 	@RequestMapping("/index")
 	public @ResponseBody User index() throws Exception {
 		User user = userService.geUserById(1);
-		
-		User u;
-		for (int i = 1; i <= 100; i ++) {
-			u = new User();
-			u.setCtime(System.currentTimeMillis());
-			u.setNickname("用户" + i);
-			u.setPassword("123456");
-			u.setSex(1);
-			u.setUsername("username" + i);
-			
-			userService.save(u);
-		}
-		
 		return user;
+//		User u;
+//		for (int i = 1; i <= 100; i ++) {
+//			u = new User();
+//			u.setCtime(System.currentTimeMillis());
+//			u.setNickname("用户" + i);
+//			u.setPassword("123456");
+//			u.setSex(1);
+//			u.setUsername("username" + i);
+//			
+//			userService.save(u);
+//		}
+//		
+//		return user;
 	}
 
 }

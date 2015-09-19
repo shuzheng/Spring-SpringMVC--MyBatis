@@ -53,11 +53,11 @@
 	<!-- 创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/shuzheng/ssm/dao/*.xml" />
+		<property name="mapperLocations" value="classpath:com/shuzheng/ssm/mapper/*.xml" />
 	</bean>
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.shuzheng.ssm.dao" />
+		<property name="basePackage" value="com.shuzheng.ssm.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -65,53 +65,21 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="append*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="modify*" propagation="REQUIRED" />
-			<tx:method name="edit*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="repair" propagation="REQUIRED" />
-			<tx:method name="delAndRepair" propagation="REQUIRED" />
-
-			<tx:method name="get*" propagation="SUPPORTS" />
-			<tx:method name="find*" propagation="SUPPORTS" />
-			<tx:method name="load*" propagation="SUPPORTS" />
-			<tx:method name="search*" propagation="SUPPORTS" />
-			<tx:method name="datagrid*" propagation="SUPPORTS" />
-
-			<tx:method name="*" propagation="SUPPORTS" />
+			<!-- 所有方法都使用事务 -->
+			<tx:method name="*" propagation="REQUIRED"/>
+			<!-- 定义所有get开头的方法都是只读的 -->
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.shuzheng.ssm.service.impl.*Service.*(..))" />
-		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.impl.*Service.*(..))" advice-ref="txAdvice" />
 	</aop:config>
 	
 	<!-- 可通过注解控制事务 -->
 	<tx:annotation-driven/>
-	
-	<!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean> -->
-	<!-- 通过AOP配置提供事务增强，让service包下所有bean的所有方法拥有事务 -->
-	<!-- <aop:config proxy-target-class="true">
-		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.*Service..*(..))" advice-ref="txAdvice"/>
-	</aop:config>
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true"/>
-			<tx:method name="query*" read-only="true"/>
-			<tx:method name="find*" read-only="true"/>
-			<tx:method name="load*" read-only="true"/>
-			<tx:method name="*" rollback-for="Exception"/>
-			 <tx:method name="*"/>
-		</tx:attributes>
-	</tx:advice> -->
 	
 </beans>
