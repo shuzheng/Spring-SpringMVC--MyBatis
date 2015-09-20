@@ -1,5 +1,7 @@
 package com.shuzheng.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,12 @@ public class UserServiceImpl<T> extends BaseService<T> implements IUserService<T
 
 	@Override
 	public User geUserById(int id) {
-
 		return userMapper.geUserById(id);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userMapper.findAll();
 	}
 
 }

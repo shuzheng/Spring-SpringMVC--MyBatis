@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shuzheng.ssm.mapper.UserMapper">
 	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true" />
-	<resultMap id="userResultMap" type="com.shuzheng.ssm.model.User">
+		
+	<resultMap id="BaseResultMap" type="com.shuzheng.ssm.model.User">
 		<id property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
@@ -11,11 +12,16 @@
 		<result property="ctime" column="ctime" />
 		<result property="email" column="email" />
 	</resultMap>
+	
 	<sql id="userColumns"> id,username,password,nickname,sex,ctime,email </sql>
-	<select id="geUserById" parameterType="com.shuzheng.ssm.model.User" resultType="com.shuzheng.ssm.model.User"
-		useCache="false">
-		select
-		<include refid="userColumns" />
-		from user where id = #{id}
+	
+	<select id="geUserById" resultMap="BaseResultMap">
+		select <include refid="userColumns" /> from user where id = #{id}
+	</select>
+
+
+	<!-- findAll -->
+	<select id="findAll" resultMap="BaseResultMap">
+		select <include refid="userColumns" /> from user
 	</select>
 </mapper>

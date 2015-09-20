@@ -6,14 +6,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<title>用户列表</title>
+<title>添加用户</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/user/add">增</a>
-<ul>
-	<c:forEach var="user" items="${users}">
-	<li>${user.id}、${user.username}|${user.password}|${user.nickname}|${user.sex}|${user.ctime}|${user.email} <a href="${pageContext.request.contextPath}/user/update/${user.id}">改</a> <a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删</a></li>
-	</c:forEach>
-</ul>
+<form method="post">
+<p>帐号：<input type="text" name="username"/></p>
+<p>密码：<input type="password" name="password"/></p>
+<p>昵称：<input type="text" name="nickname"/></p>
+<p>性别：<input type="text" name="sex"/></p>
+<p>邮箱：<input type="text" name="email"/></p>
+<p><input type="submit" value="保存"/></p>
+</form>
 </body>
 </html>
