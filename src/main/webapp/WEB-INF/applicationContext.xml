@@ -80,6 +80,6 @@
 	</aop:config>
 	
 	<!-- 可通过注解控制事务 -->
-	<tx:annotation-driven/>
+	<!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 	
 </beans>

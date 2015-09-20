@@ -11,9 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.impl.UserServiceImpl;
 
 //告诉DispatcherServlet相关的容器， 这是一个Controller， 管理好这个bean哦
@@ -47,43 +45,41 @@ public class HelloController {
 	@RequestMapping("/index")
 	public String index() {
 		// 视图渲染，/WEB-INF/jsp/hello/world.jsp
-		return "hello/world";
+		return "/hello/world";
 	}
 	
 	// 方法级别的RequestMapping， 限制并缩小了URL路径匹配，同类级别的标签协同工作，最终确定拦截到的URL由那个方法处理
 	@RequestMapping("/world")
 	public String world() {
 		// 视图渲染，/WEB-INF/jsp/hello/world.jsp
-		return "hello/world";
+		return "/hello/world";
 	}
-/*
-	// 本方法将处理 /courses/view?courseId=123 形式的URL
+
+	// 本方法将处理 /hello/view?courseId=123 形式的URL
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String viewCourse(@RequestParam("courseId") Integer courseId, Model model) {
 
-		log.debug("In viewCourse, courseId = {}", courseId);
-		Course course = courseService.getCoursebyId(courseId);
-		model.addAttribute(course);
+		User user = userService.geUserById(courseId);
+		model.addAttribute(user);
 		return "course_overview";
 	}
 
-	// 本方法将处理 /courses/view2/123 形式的URL
+	// 本方法将处理 /hello/view2/123 形式的URL
 	@RequestMapping("/view2/{courseId}")
-	public String viewCourse2(@PathVariable("courseId") Integer courseId, Map<String, Object> model) {
+	public String viewCourse2(@PathVariable("courseId") Integer courseId, Map<String, Object> map) {
 
-		log.debug("In viewCourse2, courseId = {}", courseId);
-		Course course = courseService.getCoursebyId(courseId);
-		model.put("course", course);
+		User user = userService.geUserById(courseId);
+		map.put("user", user);
 		return "course_overview";
 	}
 
-	// 本方法将处理 /courses/view3?courseId=123 形式的URL
+	// 本方法将处理 /hello/view3?courseId=123 形式的URL
 	@RequestMapping("/view3")
 	public String viewCourse3(HttpServletRequest request) {
 
 		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
-		Course course = courseService.getCoursebyId(courseId);
-		request.setAttribute("course", course);
+		User user = userService.geUserById(courseId);
+		request.setAttribute("user", user);
 
 		return "course_overview";
 	}
@@ -94,14 +90,14 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String doSave(@ModelAttribute Course course) {
+	public String doSave(@ModelAttribute User user) {
 
 		log.debug("Info of Course:");
-		log.debug(ReflectionToStringBuilder.toString(course));
+		log.debug(ReflectionToStringBuilder.toString(user));
 
 		// 在此进行业务操作，比如数据库持久化
-		course.setCourseId(123);
-		return "redirect:view2/" + course.getCourseId();
+		user.setId(123);
+		return "redirect:view2/" + user.getId();
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
@@ -116,7 +112,6 @@ public class HelloController {
 	public String doUploadFile(@RequestParam("file") MultipartFile file) throws IOException {
 
 		if (!file.isEmpty()) {
-			log.debug("Process file: {}", file.getOriginalFilename());
 			FileUtils.copyInputStreamToFile(file.getInputStream(), new File("c:\\temp\\imooc\\", System.currentTimeMillis() + file.getOriginalFilename()));
 		}
 
@@ -131,7 +126,6 @@ public class HelloController {
 			String fileName = filesNames.next();
 			MultipartFile file = multiRequest.getFile(fileName);
 			if (!file.isEmpty()) {
-				log.debug("Process file: {}", file.getOriginalFilename());
 				FileUtils.copyInputStreamToFile(file.getInputStream(), new File("c:\\temp\\imooc\\", System.currentTimeMillis() + file.getOriginalFilename()));
 			}
 
@@ -142,14 +136,13 @@ public class HelloController {
 
 	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
 	public @ResponseBody
-	Course getCourseInJson(@PathVariable Integer courseId) {
-		return courseService.getCoursebyId(courseId);
+	User getCourseInJson(@PathVariable Integer courseId) {
+		return userService.geUserById(courseId);
 	}
 
 	@RequestMapping(value = "/jsontype/{courseId}", method = RequestMethod.GET)
-	public ResponseEntity<Course> getCourseInJson2(@PathVariable Integer courseId) {
-		Course course = courseService.getCoursebyId(courseId);
-		return new ResponseEntity<Course>(course, HttpStatus.OK);
+	public ResponseEntity<User> getCourseInJson2(@PathVariable Integer courseId) {
+		User user = userService.geUserById(courseId);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	*/
 }

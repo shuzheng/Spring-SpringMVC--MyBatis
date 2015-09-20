@@ -14,7 +14,7 @@ public class UserServiceImpl<T> extends BaseService<T> implements IUserService<T
 	private UserMapper userMapper;
 
 	@Override
-	public User geUserById(int id) throws Exception {
+	public User geUserById(int id) {
 
 		return userMapper.geUserById(id);
 	}

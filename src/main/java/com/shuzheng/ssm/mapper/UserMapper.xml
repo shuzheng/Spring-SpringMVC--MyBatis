@@ -9,8 +9,9 @@
 		<result property="nickname" column="nickname" />
 		<result property="sex" column="sex" />
 		<result property="ctime" column="ctime" />
+		<result property="email" column="email" />
 	</resultMap>
-	<sql id="userColumns"> id,username,password,nickname,sex,ctime </sql>
+	<sql id="userColumns"> id,username,password,nickname,sex,ctime,email </sql>
 	<select id="geUserById" parameterType="com.shuzheng.ssm.model.User" resultType="com.shuzheng.ssm.model.User"
 		useCache="false">
 		select

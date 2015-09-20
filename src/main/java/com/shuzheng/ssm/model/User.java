@@ -1,5 +1,10 @@
 package com.shuzheng.ssm.model;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 /**
  * 
@@ -11,11 +16,19 @@ package com.shuzheng.ssm.model;
 public class User {
 
 	private Integer id;
+	@NotEmpty(message = "帐号不能为空")
+	@Size(min = 6, max = 20, message = "帐号必须在6~20位之间")
 	private String username;
+	@NotEmpty(message = "密码不能为空")
+	@Size(min = 6, max = 20, message = "密码必须在6~20位之间")
 	private String password;
+	@NotEmpty(message = "昵称不能为空")
+	@Size(min = 6, max = 20, message = "昵称必须在6~20位之间")
 	private String nickname;
 	private Integer sex;
 	private long ctime;
+	@Email(message = "email格式不正确")
+	private String email;
 
 	public Integer getId() {
 		return id;
@@ -63,6 +76,14 @@ public class User {
 
 	public void setCtime(long ctime) {
 		this.ctime = ctime;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
