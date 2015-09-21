@@ -15,7 +15,7 @@
 	
 	<sql id="userColumns"> id,username,password,nickname,sex,ctime,email </sql>
 	
-	<select id="geUserById" resultMap="BaseResultMap">
+	<select id="geUserById" resultType="com.shuzheng.ssm.model.User" resultMap="BaseResultMap">
 		select <include refid="userColumns" /> from user where id = #{id}
 	</select>
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.shuzheng.ssm.model.User;
 
-public interface IUserService<T> extends IBaseService<T> {
+public interface IUserService<T> {
 	
 	User geUserById(int id);
 	
