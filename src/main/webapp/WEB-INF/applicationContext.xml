@@ -15,7 +15,7 @@
           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<!-- 自动扫描组件 -->
-	<context:component-scan base-package="com.shuzheng.ssm.service.impl"/>
+	<context:component-scan base-package="com.shuzheng.ssm.service"/>
 	<!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在springMVC-servlet.xml中配置的，如果不去除会影响事务管理的。-->
 	<!--<context:component-scan base-package="com.shuzheng.ssm">
 		<context:exclude-filter type="regex" expression="com.shuzheng.ssm.controller.*"/>
@@ -68,15 +68,13 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!-- 所有方法都使用事务 -->
-			<tx:method name="*" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
 			<!-- 定义所有get开头的方法都是只读的 -->
 			<tx:method name="get*" read-only="true"/>
-			<tx:method name="find*" read-only="true"/>
-			<tx:method name="*" rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.impl.*Service.*(..))" advice-ref="txAdvice" />
+		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.*ServiceImpl.*(..))" advice-ref="txAdvice" />
 	</aop:config>
 	
 	<!-- 可通过注解控制事务 -->

@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.shuzheng.ssm.model.User;
-import com.shuzheng.ssm.service.impl.UserServiceImpl;
+import com.shuzheng.ssm.service.UserServiceImpl;
 
 //告诉DispatcherServlet相关的容器， 这是一个Controller， 管理好这个bean哦
 @Controller
@@ -59,7 +59,7 @@ public class HelloController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String viewCourse(@RequestParam("courseId") Integer courseId, Model model) {
 
-		User user = userService.geUserById(courseId);
+		User user = userService.get(courseId);
 		model.addAttribute(user);
 		return "course_overview";
 	}
@@ -68,7 +68,7 @@ public class HelloController {
 	@RequestMapping("/view2/{courseId}")
 	public String viewCourse2(@PathVariable("courseId") Integer courseId, Map<String, Object> map) {
 
-		User user = userService.geUserById(courseId);
+		User user = userService.get(courseId);
 		map.put("user", user);
 		return "course_overview";
 	}
@@ -78,7 +78,7 @@ public class HelloController {
 	public String viewCourse3(HttpServletRequest request) {
 
 		Integer courseId = Integer.valueOf(request.getParameter("courseId"));
-		User user = userService.geUserById(courseId);
+		User user = userService.get(courseId);
 		request.setAttribute("user", user);
 
 		return "course_overview";
@@ -137,12 +137,12 @@ public class HelloController {
 	@RequestMapping(value = "/{courseId}", method = RequestMethod.GET)
 	public @ResponseBody
 	User getCourseInJson(@PathVariable Integer courseId) {
-		return userService.geUserById(courseId);
+		return userService.get(courseId);
 	}
 
 	@RequestMapping(value = "/jsontype/{courseId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getCourseInJson2(@PathVariable Integer courseId) {
-		User user = userService.geUserById(courseId);
+		User user = userService.get(courseId);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 }

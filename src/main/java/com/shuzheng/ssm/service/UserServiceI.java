@@ -1,14 +1,11 @@
-package com.shuzheng.ssm.mapper;
+package com.shuzheng.ssm.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.shuzheng.ssm.model.User;
 
-@Repository
-public interface UserMapper {
-
+public interface UserServiceI<T> {
+	
 	User get(int id);
 	
 	List<User> getAll();

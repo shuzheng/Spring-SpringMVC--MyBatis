@@ -2,7 +2,6 @@ package com.shuzheng.ssm.model;
 
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -27,8 +26,6 @@ public class User {
 	private String nickname;
 	private Integer sex;
 	private long ctime;
-	@Email(message = "email格式不正确")
-	private String email;
 
 	public Integer getId() {
 		return id;
@@ -76,14 +73,6 @@ public class User {
 
 	public void setCtime(long ctime) {
 		this.ctime = ctime;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }

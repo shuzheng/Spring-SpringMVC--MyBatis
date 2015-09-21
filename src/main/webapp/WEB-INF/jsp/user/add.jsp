@@ -9,12 +9,12 @@
 <title>添加用户</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/user/list">返回</a>
 <form method="post">
 <p>帐号：<input type="text" name="username"/></p>
 <p>密码：<input type="password" name="password"/></p>
 <p>昵称：<input type="text" name="nickname"/></p>
 <p>性别：<input type="text" name="sex"/></p>
-<p>邮箱：<input type="text" name="email"/></p>
 <p><input type="submit" value="保存"/></p>
 </form>
 </body>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shuzheng.ssm.mapper.UserMapper">
+	
+	<!-- 自定义字段 -->
+	<!--
 	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true" />
-		
 	<resultMap id="BaseResultMap" type="com.shuzheng.ssm.model.User">
 		<id property="id" column="id" />
 		<result property="username" column="username" />
@@ -10,18 +12,28 @@
 		<result property="nickname" column="nickname" />
 		<result property="sex" column="sex" />
 		<result property="ctime" column="ctime" />
-		<result property="email" column="email" />
 	</resultMap>
+	<sql id="Base_Column_List"> id,username,password,nickname,sex,ctime </sql>
+	-->
 	
-	<sql id="userColumns"> id,username,password,nickname,sex,ctime,email </sql>
-	
-	<select id="geUserById" resultType="com.shuzheng.ssm.model.User" resultMap="BaseResultMap">
-		select <include refid="userColumns" /> from user where id = #{id}
+	<select id="get" resultType="com.shuzheng.ssm.model.User" parameterType="int">
+		select * from user where id = #{id}
 	</select>
 
-
-	<!-- findAll -->
-	<select id="findAll" resultMap="BaseResultMap">
-		select <include refid="userColumns" /> from user
+	<select id="getAll" resultType="com.shuzheng.ssm.model.User">
+		select * from user
 	</select>
+	
+	<insert id="insert" parameterType="com.shuzheng.ssm.model.User" >
+		insert into user (id, username, password, nickname, sex, ctime) values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{ctime,jdbcType=BIGINT})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.shuzheng.ssm.model.User" >
+		update user set id=#{id,jdbcType=INTEGER}, username=#{username,jdbcType=VARCHAR}, password=#{password,jdbcType=VARCHAR}, nickname=#{nickname,jdbcType=VARCHAR}, sex=#{sex,jdbcType=INTEGER}, ctime=#{ctime,jdbcType=BIGINT} where id=#{id}
+	</update>
+	
 </mapper>

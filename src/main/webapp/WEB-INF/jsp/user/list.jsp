@@ -12,7 +12,7 @@
 <a href="${pageContext.request.contextPath}/user/add">增</a>
 <ul>
 	<c:forEach var="user" items="${users}">
-	<li>${user.id}、${user.username}|${user.password}|${user.nickname}|${user.sex}|${user.ctime}|${user.email} <a href="${pageContext.request.contextPath}/user/update/${user.id}">改</a> <a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删</a></li>
+	<li>${user.id}、${user.username}|${user.password}|${user.nickname}|${user.sex}|${user.ctime} <a href="${pageContext.request.contextPath}/user/update/${user.id}">改</a> <a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删</a></li>
 	</c:forEach>
 </ul>
 </body>
