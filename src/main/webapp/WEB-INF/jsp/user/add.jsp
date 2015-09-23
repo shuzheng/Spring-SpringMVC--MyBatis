@@ -6,16 +6,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css?v=201509231"/>
 <title>添加用户</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/user/list">返回</a>
-<form method="post">
-<p>帐号：<input type="text" name="username"/></p>
-<p>密码：<input type="password" name="password"/></p>
-<p>昵称：<input type="text" name="nickname"/></p>
-<p>性别：<input type="text" name="sex"/></p>
-<p><input type="submit" value="保存"/></p>
-</form>
+<div class="breadcrumb">
+	<span class="crust"><a href="${pageContext.request.contextPath}/" class="crumb">首页</a><span class="arrow"><span>&gt;</span></span></span>
+	<span class="crust"><a href="${pageContext.request.contextPath}/user" class="crumb">用户管理</a><span class="arrow"><span>&gt;</span></span></span>
+	<span class="crust"><a href="" class="crumb">添加用户</a><span class="arrow"><span>&gt;</span></span></span>
+</div>
+<div id="main">
+	<form id="form" method="post">
+	<table border="1">
+		<caption>添加用户</caption>
+		<tr><td>帐号：<font color="#cc0000">*</font></td><td><input id="username" type="text" name="username" placeholder="必填" required="true" maxlength="20" autofocus/></td></tr>
+		<tr><td>密码：<font color="#cc0000">*</font></td><td><input id="password" type="password" name="password" placeholder="必填" required="true" maxlength="20"/></td></tr>
+		<tr><td>昵称：<font color="#cc0000">*</font></td><td><input id="nickname" type="text" name="nickname" placeholder="必填" required="true" maxlength="20"/></td></tr>
+		<tr>
+			<td>性别：</td>
+			<td>
+				<select name="sex">
+					<option value="0">-请选择-</option>
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select>
+			</td>
+		</tr>
+		<tr><td></td><td><a href="${pageContext.request.contextPath}/user">取消</a>　<input type="submit" value="保存"/></td></tr>
+	</table>
+	</form>
+</div>
 </body>
 </html>

@@ -6,14 +6,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css?v=201509231"/>
 <title>用户列表</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/user/add">增</a>
-<ul>
-	<c:forEach var="user" items="${users}">
-	<li>${user.id}、${user.username}|${user.password}|${user.nickname}|${user.sex}|${user.ctime} <a href="${pageContext.request.contextPath}/user/update/${user.id}">改</a> <a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删</a></li>
-	</c:forEach>
-</ul>
+<div class="breadcrumb">
+	<span class="crust"><a href="${pageContext.request.contextPath}/" class="crumb">首页</a><span class="arrow"><span>&gt;</span></span></span>
+	<span class="crust"><a href="${pageContext.request.contextPath}/user" class="crumb">用户管理</a><span class="arrow"><span>&gt;</span></span></span>
+	<span class="crust"><a href="" class="crumb">用户列表</a><span class="arrow"><span>&gt;</span></span></span>
+</div>
+<div id="main">
+	<table id="datagrid" class="datagrid" border="1">
+		<caption><i class="fa fa-list-ol"></i> 用户列表 <a href="${pageContext.request.contextPath}/user/add">添加</a></caption>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>账号</th>
+				<th>密码</th>
+				<th>昵称</th>
+				<th>性别</th>
+				<th>创建时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="user" items="${users}">
+			<tr>
+				<td>${user.id}</td>
+				<td>${user.username}</td>
+				<td>${user.password}</td>
+				<td>${user.nickname}</td>
+				<td>
+					<c:if test="${user.sex==1}">男</c:if>
+					<c:if test="${user.sex==2}">女</c:if>
+				</td>
+				<td><fmt:formatDate value="${user.ctime_date}" type="both" pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai"/></td>
+				<td><a href="${pageContext.request.contextPath}/user/update/${user.id}">修改</a> <a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删除</a></td>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
 </body>
 </html>

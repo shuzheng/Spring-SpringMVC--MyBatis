@@ -1,9 +1,10 @@
 package com.shuzheng.ssm.model;
 
+import java.util.Date;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
 
 /**
  * 
@@ -25,7 +26,7 @@ public class User {
 	@Size(min = 6, max = 20, message = "昵称必须在6~20位之间")
 	private String nickname;
 	private Integer sex;
-	private long ctime;
+	private Long ctime;
 
 	public Integer getId() {
 		return id;
@@ -67,12 +68,16 @@ public class User {
 		this.sex = sex;
 	}
 
-	public long getCtime() {
+	public Long getCtime() {
 		return ctime;
 	}
 
-	public void setCtime(long ctime) {
+	public void setCtime(Long ctime) {
 		this.ctime = ctime;
+	}
+	
+	public Date getCtime_date() {
+		return new Date(ctime);
 	}
 
 }

@@ -1,9 +1,7 @@
 package com.shuzheng.ssm.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +24,7 @@ public class UserController {
 	 * 首页
 	 * @return
 	 */
-	@RequestMapping("/index")
+	@RequestMapping("")
 	public String index() {
 		return "redirect:/user/list";
 	}
