@@ -44,6 +44,30 @@
 		</trim>
 	</insert>
 	
+	<!-- 插入前建好id索引，oracle支持
+	<insert id="insertAutoKey" parameterType="com.shuzheng.ssm.model.User" keyProperty="id">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			select nextval('user')
+		</selectKey>
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">id,</if>
+			<if test="username != null">username,</if>
+			<if test="password != null">password,</if>
+			<if test="nickname != null">nickname,</if>
+			<if test="sex != null">sex,</if>
+			<if test="ctime != null">ctime,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id,jdbcType=INTEGER},</if>
+			<if test="username != null">#{username,jdbcType=VARCHAR},</if>
+			<if test="password != null">#{password,jdbcType=VARCHAR},</if>
+			<if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
+			<if test="sex != null">#{sex,jdbcType=INTEGER},</if>
+			<if test="ctime != null">#{ctime,jdbcType=BIGINT},</if>
+		</trim>
+	</insert> -->
+	
 	<delete id="delete" parameterType="int">
 		delete from user where id=#{id,jdbcType=INTEGER}
 	</delete>
@@ -56,7 +80,7 @@
 			<if test="password != null">password=#{password,jdbcType=VARCHAR},</if>
 			<if test="nickname != null">nickname=#{nickname,jdbcType=VARCHAR},</if>
 			<if test="sex != null">sex=#{sex,jdbcType=INTEGER},</if>
-			<if test="ctime != null">ctime=#{ctime,jdbcType=BIGINT},</if>
+			<if test="ctime != null">ctime=#{ctime,jdbcType=BIGINT}</if>
 		</set>
 		where id=#{id,jdbcType=INTEGER}
 	</update>
