@@ -5,7 +5,7 @@
 	<!-- 自定义字段 -->
 	<!--
 	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
-	<resultMap id="BaseResultMap" type="com.shuzheng.ssm.model.User">
+	<resultMap id="BaseResultMap" type="User">
 		<id property="id" column="id"/>
 		<result property="username" column="username"/>
 		<result property="password" column="password"/>
@@ -16,15 +16,15 @@
 	<sql id="Base_Column_List"> id,username,password,nickname,sex,ctime </sql>
 	-->
 	
-	<select id="get" resultType="com.shuzheng.ssm.model.User" parameterType="int">
+	<select id="get" resultType="User" parameterType="int">
 		select * from user where id=#{id,jdbcType=INTEGER}
 	</select>
 
-	<select id="getAll" resultType="com.shuzheng.ssm.model.User">
+	<select id="getAll" resultType="User">
 		select * from user
 	</select>
 	
-	<insert id="insert" parameterType="com.shuzheng.ssm.model.User">
+	<insert id="insert" parameterType="User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">id,</if>
@@ -45,7 +45,7 @@
 	</insert>
 	
 	<!-- 插入前建好id索引，oracle支持
-	<insert id="insertAutoKey" parameterType="com.shuzheng.ssm.model.User" keyProperty="id">
+	<insert id="insertAutoKey" parameterType="User" keyProperty="id">
 		<selectKey keyProperty="id" resultType="String" order="BEFORE">
 			select nextval('user')
 		</selectKey>
@@ -72,7 +72,7 @@
 		delete from user where id=#{id,jdbcType=INTEGER}
 	</delete>
 	
-	<update id="update" parameterType="com.shuzheng.ssm.model.User">
+	<update id="update" parameterType="User">
 		update user
 		<set>
 			<!--<if test="id != null">id=#{id,jdbcType=INTEGER},</if>-->
