@@ -19,9 +19,9 @@
 	<form id="form" method="post">
 	<table border="1">
 		<caption>添加用户</caption>
-		<tr><td>帐号：<font color="#cc0000">*</font></td><td><input id="username" type="text" name="username" placeholder="必填" required="true" maxlength="20" autofocus/></td></tr>
-		<tr><td>密码：<font color="#cc0000">*</font></td><td><input id="password" type="password" name="password" placeholder="必填" required="true" maxlength="20"/></td></tr>
-		<tr><td>昵称：<font color="#cc0000">*</font></td><td><input id="nickname" type="text" name="nickname" placeholder="必填" required="true" maxlength="20"/></td></tr>
+		<tr><td>帐号：<font color="#cc0000">*</font></td><td><input id="username" type="text" name="username" placeholder="必填" required="true" maxlength="20" autofocus value=""/></td></tr>
+		<tr><td>密码：<font color="#cc0000">*</font></td><td><input id="password" type="password" name="password" placeholder="必填" required="true" maxlength="20" value=""/></td></tr>
+		<tr><td>昵称：<font color="#cc0000">*</font></td><td><input id="nickname" type="text" name="nickname" placeholder="必填" required="true" maxlength="20" value=""/></td></tr>
 		<tr>
 			<td>性别：</td>
 			<td>

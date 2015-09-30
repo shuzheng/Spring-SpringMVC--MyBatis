@@ -42,7 +42,7 @@
 				</td>
 				<td><fmt:formatDate value="${user.ctime_date}" type="both" pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai"/></td>
 				<td>
-					<a href="${pageContext.request.contextPath}/user/books/${user.id}">书籍管理</a>
+					<a href="${pageContext.request.contextPath}/book/list/${user.id}">书籍管理</a>
 					<a href="${pageContext.request.contextPath}/user/update/${user.id}">修改</a>
 					<a href="${pageContext.request.contextPath}/user/delete/${user.id}" onclick="return confirm('确认删除吗？');">删除</a>
 				</td>

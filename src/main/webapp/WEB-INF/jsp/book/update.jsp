@@ -14,7 +14,7 @@
 	<span class="crust"><a href="${pageContext.request.contextPath}/" class="crumb">首页</a><span class="arrow"><span>&gt;</span></span></span>
 	<span class="crust"><a href="${pageContext.request.contextPath}/user" class="crumb">用户管理</a><span class="arrow"><span>&gt;</span></span></span>
 	<span class="crust"><a href="${pageContext.request.contextPath}/user/list" class="crumb">用户列表</a><span class="arrow"><span>&gt;</span></span></span>
-	<span class="crust"><a href="${pageContext.request.contextPath}/user/books/${book.user.id}" class="crumb">书籍列表</a><span class="arrow"><span>&gt;</span></span></span>
+	<span class="crust"><a href="${pageContext.request.contextPath}/book/list/${book.user.id}" class="crumb">书籍列表</a><span class="arrow"><span>&gt;</span></span></span>
 	<span class="crust"><a href="" class="crumb">修改书籍</a><span class="arrow"><span>&gt;</span></span></span>
 </div>
 <div id="main">
@@ -27,7 +27,7 @@
 		<tr><td>昵称：</td><td>${book.user.nickname}</td></tr>
 		<tr><td>性别：</td><td><c:if test="${book.user.sex==1}">男</c:if><c:if test="${book.user.sex==2}">女</c:if></td></tr>
 		<tr><td>书名：<font color="#cc0000">*</font></td><td><input id="name" type="text" name="name" placeholder="必填" required="true" maxlength="20" autofocus value="${book.name}"/></td></tr>
-		<tr><td></td><td><a href="${pageContext.request.contextPath}/user/books/${book.user.id}">取消</a>　<input type="submit" value="保存"/></td></tr>
+		<tr><td></td><td><a href="${pageContext.request.contextPath}/book/list/${book.user.id}">取消</a>　<input type="submit" value="保存"/></td></tr>
 	</table>
 	</form>
 </div>

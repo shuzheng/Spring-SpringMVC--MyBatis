@@ -128,18 +128,4 @@ public class UserController {
 		return "redirect:/user/list";
 	}
 	
-	/**
-	 * 书籍列表
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-	public String list(@PathVariable int id, Model model) {
-		log.debug(id);
-		User user = userService.getBooks(id);
-		model.addAttribute("user", user);
-		return "/book/list";
-	}
-	
 }
