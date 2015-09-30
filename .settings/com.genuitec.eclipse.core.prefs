@@ -1,5 +1,4 @@
-#Tue Sep 22 13:50:08 CST 2015
 eclipse.preferences.version=1
-validator.Checked=src/main/webapp/resources/js
+validator.Checked=src/main/webapp/resources/lib,src/main/webapp/resources/js
 validator.Revalidate=true
 validator.Unchecked=
