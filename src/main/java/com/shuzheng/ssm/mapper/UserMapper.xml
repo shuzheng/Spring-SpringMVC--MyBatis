@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shuzheng.ssm.mapper.UserMapper">
 	
-	<!-- 自定义字段 -->
-	<!--
+	<!-- 缓存 -->
 	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
-	<resultMap id="BaseResultMap" type="User">
+	
+	<!-- 自定义字段 -->
+	<resultMap id="UserResultMap" type="User">
 		<id property="id" column="id"/>
 		<result property="username" column="username"/>
 		<result property="password" column="password"/>
@@ -13,17 +14,21 @@
 		<result property="sex" column="sex"/>
 		<result property="ctime" column="ctime"/>
 	</resultMap>
-	<sql id="Base_Column_List"> id,username,password,nickname,sex,ctime </sql>
-	-->
 	
-	<select id="get" resultType="User" parameterType="int">
+	<!--  -->
+	<sql id="Base_Column_List"> id,username,password,nickname,sex,ctime </sql>
+	
+	<!-- 根据id查单条记录 -->
+	<select id="get" resultMap="UserResultMap" parameterType="int">
 		select * from user where id=#{id,jdbcType=INTEGER}
 	</select>
 
-	<select id="getAll" resultType="User">
+	<!-- 查询所有记录 -->
+	<select id="getAll" resultMap="UserResultMap">
 		select * from user
 	</select>
 	
+	<!-- 插入单条记录 -->
 	<insert id="insert" parameterType="User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -42,8 +47,8 @@
 		</trim>
 	</insert>
 	
-	<!-- 插入前建好id索引 -->
-	<insert id="insertAutoKey" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+	<!-- 插入单条记录，插入前建好id索引 -->
+	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">id,</if>
@@ -63,10 +68,12 @@
 		</trim>
 	</insert>
 	
+	<!-- 根据id删除单条记录 -->
 	<delete id="delete" parameterType="int">
 		delete from user where id=#{id,jdbcType=INTEGER}
 	</delete>
 	
+	<!-- 修改单条记录 -->
 	<update id="update" parameterType="User">
 		update user
 		<set>

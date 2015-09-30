@@ -73,7 +73,7 @@ public class UserController {
 	 * @param binding
 	 * @return
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add2", method = RequestMethod.POST)
 	public String add2(@Valid User user, BindingResult binding) {
 		if (binding.hasErrors()) {
 			return "user/add";
