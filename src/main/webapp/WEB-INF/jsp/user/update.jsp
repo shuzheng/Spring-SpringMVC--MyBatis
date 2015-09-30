@@ -18,11 +18,20 @@
 <div id="main">
 	<form id="form" method="post">
 	<table border="1">
-		<caption>添加用户</caption>
+		<caption>修改用户</caption>
 		<tr><td>帐号：<font color="#cc0000">*</font></td><td><input id="username" type="text" name="username" placeholder="必填" required="true" maxlength="20" autofocus value="${user.username}"/></td></tr>
 		<tr><td>密码：<font color="#cc0000">*</font></td><td><input id="password" type="password" name="password" placeholder="必填" required="true" maxlength="20" value="${user.password}"/></td></tr>
 		<tr><td>昵称：<font color="#cc0000">*</font></td><td><input id="nickname" type="text" name="nickname" placeholder="必填" required="true" maxlength="20" value="${user.nickname}"/></td></tr>
-		<tr><td>性别：<font color="#cc0000">*</font></td><td><input id="sex" type="text" name="sex" value="${user.sex}"/></td></tr>
+		<tr>
+			<td>性别：<font color="#cc0000">*</font></td>
+			<td>
+				<select id="sex" name="sex">
+					<option value="0">-请选择-</option>
+					<option value="1" <c:if test="${user.sex==1}">selected="selected"</c:if>>男</option>
+					<option value="2" <c:if test="${user.sex==2}">selected="selected"</c:if>>女</option>
+				</select>
+			</td>
+		</tr>
 		<tr><td></td><td><a href="${pageContext.request.contextPath}/user">取消</a>　<input type="submit" value="保存"/></td></tr>
 	</table>
 	</form>

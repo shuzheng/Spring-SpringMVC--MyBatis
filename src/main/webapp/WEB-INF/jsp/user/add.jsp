@@ -25,7 +25,7 @@
 		<tr>
 			<td>性别：</td>
 			<td>
-				<select name="sex">
+				<select id="sex" name="sex">
 					<option value="0">-请选择-</option>
 					<option value="1">男</option>
 					<option value="2">女</option>

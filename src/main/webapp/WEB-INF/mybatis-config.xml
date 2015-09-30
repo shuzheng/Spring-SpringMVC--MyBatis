@@ -6,5 +6,6 @@
 	<!-- mapping 文件路径配置 -->
 	<typeAliases>
 		<typeAlias alias="User" type="com.shuzheng.ssm.model.User"/>
+		<typeAlias alias="Book" type="com.shuzheng.ssm.model.Book"/>
 	</typeAliases>
 </configuration>

@@ -46,4 +46,10 @@ public class UserServiceImpl<T> implements UserServiceI<T> {
 		userMapper.update(user);
 	}
 
+
+	@Override
+	public User getBooks(int id) {
+		return userMapper.getBooks(id);
+	}
+	
 }

@@ -17,5 +17,7 @@ public interface UserServiceI<T> {
 	void delete(int id);
 	
 	void update(User user);
+
 	
+	User getBooks(int id);
 }

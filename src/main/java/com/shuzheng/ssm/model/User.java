@@ -1,6 +1,7 @@
 package com.shuzheng.ssm.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.Size;
 
@@ -27,6 +28,8 @@ public class User {
 	private String nickname;
 	private Integer sex;
 	private Long ctime;
+	
+	private List<Book> books;
 
 	public Integer getId() {
 		return id;
@@ -78,6 +81,14 @@ public class User {
 	
 	public Date getCtime_date() {
 		return new Date(ctime);
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 }
