@@ -27,7 +27,6 @@
 	<insert id="insert" parameterType="User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">id,</if>
 			<if test="username != null">username,</if>
 			<if test="password != null">password,</if>
 			<if test="nickname != null">nickname,</if>
@@ -35,7 +34,6 @@
 			<if test="ctime != null">ctime,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">#{id,jdbcType=INTEGER},</if>
 			<if test="username != null">#{username,jdbcType=VARCHAR},</if>
 			<if test="password != null">#{password,jdbcType=VARCHAR},</if>
 			<if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
@@ -44,11 +42,8 @@
 		</trim>
 	</insert>
 	
-	<!-- 插入前建好id索引，oracle支持
-	<insert id="insertAutoKey" parameterType="User" keyProperty="id">
-		<selectKey keyProperty="id" resultType="String" order="BEFORE">
-			select nextval('user')
-		</selectKey>
+	<!-- 插入前建好id索引 -->
+	<insert id="insertAutoKey" parameterType="User" useGeneratedKeys="true" keyProperty="id">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">id,</if>
@@ -66,7 +61,7 @@
 			<if test="sex != null">#{sex,jdbcType=INTEGER},</if>
 			<if test="ctime != null">#{ctime,jdbcType=BIGINT},</if>
 		</trim>
-	</insert> -->
+	</insert>
 	
 	<delete id="delete" parameterType="int">
 		delete from user where id=#{id,jdbcType=INTEGER}

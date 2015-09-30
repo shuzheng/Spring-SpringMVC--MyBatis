@@ -1,7 +1,9 @@
 package com.shuzheng.ssm.controller;
 
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,8 +63,23 @@ public class UserController {
 		if (binding.hasErrors()) {
 			return "user/add";
 		}
-		user.setCtime(System.currentTimeMillis());
 		userService.insert(user);
+		return "redirect:/user/list";
+	}
+	
+	/**
+	 * 新增post2,返回自增主键值
+	 * @param user
+	 * @param binding
+	 * @return
+	 */
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add2(@Valid User user, BindingResult binding) {
+		if (binding.hasErrors()) {
+			return "user/add";
+		}
+		userService.insertAutoKey(user);
+		System.out.println(user.getId());
 		return "redirect:/user/list";
 	}
 	

@@ -26,7 +26,14 @@ public class UserServiceImpl<T> implements UserServiceI<T> {
 
 	@Override
 	public void insert(User user) {
+		user.setCtime(System.currentTimeMillis());
 		userMapper.insert(user);
+	}
+
+	@Override
+	public void insertAutoKey(User user) {
+		user.setCtime(System.currentTimeMillis());
+		userMapper.insertAutoKey(user);
 	}
 
 	@Override

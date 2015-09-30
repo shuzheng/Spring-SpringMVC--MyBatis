@@ -12,6 +12,8 @@ public interface UserServiceI<T> {
 	
 	void insert(User user);
 	
+	void insertAutoKey(User user);
+	
 	void delete(int id);
 	
 	void update(User user);
