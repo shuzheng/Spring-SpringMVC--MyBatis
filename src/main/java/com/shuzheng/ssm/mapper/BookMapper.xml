@@ -3,7 +3,7 @@
 <mapper namespace="com.shuzheng.ssm.mapper.BookMapper">
 	
 	<!-- 缓存 -->
-	<!--<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>-->
+	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
 	
 	<!-- sql代码片段 -->
 	<sql id="table_name"> book </sql>
