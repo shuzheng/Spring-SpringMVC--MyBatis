@@ -1,12 +1,15 @@
 package com.shuzheng.ssm.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shuzheng.ssm.mapper.UserMapper;
 import com.shuzheng.ssm.model.User;
+import com.shuzheng.ssm.util.Page;
 
 @Service
 public class UserServiceImpl<T> implements UserServiceI<T> {
@@ -20,8 +23,11 @@ public class UserServiceImpl<T> implements UserServiceI<T> {
 	}
 
 	@Override
-	public List<User> getAll() {
-		return userMapper.getAll();
+	public List<User> getAll(Page page) {
+		Map<String,Object> parameter = new HashMap<String, Object>();
+		parameter.put("pageBean", page);
+		parameter.put("user", new User());
+		return userMapper.getAll(parameter);
 	}
 
 	@Override

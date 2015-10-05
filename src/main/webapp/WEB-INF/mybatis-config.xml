@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
 	<!-- 该包下的model不用写包名，会使用 model的首字母小写的非限定类名来作为它的别名，若有注解@Alias("xxx")，则别名为注解值 -->
 	<typeAliases>
-		<package name="com.shuzheng.ssm.model"/>
-		<!--
+		<!--<package name="com.shuzheng.ssm.model"/>-->
+		
 		<typeAlias alias="user" type="com.shuzheng.ssm.model.User"/>
 		<typeAlias alias="book" type="com.shuzheng.ssm.model.Book"/>
-		-->
+		
 	</typeAliases>
-	<mappers>
+	
+	<!-- 分页拦截器 -->
+	<plugins>
+		<plugin interceptor="com.shuzheng.ssm.interceptor.PageInterceptor">
+			<property name="pageSqlId" value=".*All$"/>
+		</plugin>
+	</plugins>
+	
+	<!-- mapper包路径 -->
+	<!--<mappers>
 		<package name="com.shuzheng.ssm.mapper"/>
-		<!--
-		<mapper resource="com/shuzheng/ssm/mapper/UserMapper.xml"/>
+		
+		<mapper resource="
+		<property name="basePackage" value="com.shuzheng.ssm.mapper"/>"/>
 		<mapper resource="com/shuzheng/ssm/mapper/BookMapper.xml"/>
-		-->
-	</mappers>
+		
+	</mappers>-->
+	
 </configuration>

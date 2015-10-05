@@ -3,7 +3,7 @@
 <mapper namespace="com.shuzheng.ssm.mapper.UserMapper">
 	
 	<!-- 缓存 -->
-	<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>
+	<!--<cache type="PERPETUAL" eviction="LRU" flushInterval="60000" size="1024" readOnly="true"/>-->
 	
 	<!-- sql代码片段 -->
 	<sql id="table_name"> user </sql>
@@ -49,11 +49,18 @@
 	</select>
 
 	<!-- 查询所有记录 -->
-	<select id="getAll" resultType="user">
+	<select id="getAll" resultType="user" parameterType="java.util.Map">
 		select
 			<include refid="table_clumns"/>
 		from
 			<include refid="table_name"/>
+		<where>
+			<if test="user.username != null">username=#{user.username}</if>
+			<if test="user.password != null">and password=#{user.password}</if>
+			<if test="user.sex != null">and sex=#{user.sex}</if>
+		</where>
+		order by
+			id desc
 	</select>
 	
 	<!-- 插入单条记录 -->

@@ -2,6 +2,7 @@ package com.shuzheng.ssm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -13,9 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.UserServiceI;
+import com.shuzheng.ssm.util.Page;
+import com.shuzheng.ssm.util.Paginator;
 
 @Controller
 @RequestMapping("/user")
@@ -41,9 +45,20 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<User> users = userService.getAll();
-		model.addAttribute("users", users);
+	public String list(
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int size,
+			HttpServletRequest request) {
+		// 创建分页对象
+		Page pageBean = new Page();
+		pageBean.setCurrentPage(page);
+		pageBean.setPageNumber(size);
+		List<User> users = userService.getAll(pageBean);
+		// 创建分页html
+		String paginator = Paginator.getSimplePages(pageBean.getTotalNumber(), size, 5, page, request, "page");
+		request.setAttribute("users", users);
+		request.setAttribute("pageBean", pageBean);
+		request.setAttribute("paginator", paginator);
 		return "/user/list";
 	}
 	

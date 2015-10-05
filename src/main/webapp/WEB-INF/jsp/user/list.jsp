@@ -51,5 +51,6 @@
 		</tbody>
 	</table>
 </div>
+${paginator}
 </body>
 </html>
