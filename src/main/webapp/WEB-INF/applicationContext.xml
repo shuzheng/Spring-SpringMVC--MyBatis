@@ -16,14 +16,9 @@
 
 	<!-- 自动扫描组件 -->
 	<context:component-scan base-package="com.shuzheng.ssm.service"/>
-	<!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在springMVC-servlet.xml中配置的，如果不去除会影响事务管理的。-->
-	<!--<context:component-scan base-package="com.shuzheng.ssm">
-		<context:exclude-filter type="regex" expression="com.shuzheng.ssm.controller.*"/>
-	</context:component-scan>-->
 	
 	<!-- 引入jdbc配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
-	<!--<import resource="spring-mybatis.xml"/>-->
 	<!-- 连接池配置 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
@@ -53,7 +48,6 @@
 	<!-- 创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/shuzheng/ssm/mapper/*.xml"/>
 		<property name="configLocation" value="/WEB-INF/mybatis-config.xml"/>
 	</bean>
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
@@ -77,8 +71,5 @@
 	<aop:config>
 		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.*ServiceImpl.*(..))" advice-ref="txAdvice" />
 	</aop:config>
-	
-	<!-- 可通过注解控制事务 -->
-	<!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 	
 </beans>

@@ -10,7 +10,7 @@
 	<sql id="table_clumns"> id,username,password,nickname,sex,ctime </sql>
 	
 	<!-- 结果映射关系 -->
-	<resultMap id="UserResultMap" type="User">
+	<resultMap id="UserResultMap" type="user">
 		<id column="u_id" property="id"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>
@@ -39,7 +39,7 @@
 	</select>
 	
 	<!-- 根据id查单条记录 -->
-	<select id="get" resultType="User" parameterType="int">
+	<select id="get" resultType="user" parameterType="int">
 		select
 			<include refid="table_clumns"/>
 		from
@@ -49,7 +49,7 @@
 	</select>
 
 	<!-- 查询所有记录 -->
-	<select id="getAll" resultType="User">
+	<select id="getAll" resultType="user">
 		select
 			<include refid="table_clumns"/>
 		from
@@ -57,7 +57,7 @@
 	</select>
 	
 	<!-- 插入单条记录 -->
-	<insert id="insert" parameterType="User">
+	<insert id="insert" parameterType="user">
 		insert into
 			<include refid="table_name"/>
 			<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -77,7 +77,7 @@
 	</insert>
 	
 	<!-- 插入单条记录，插入前建好id索引 -->
-	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="user">
 		insert into
 			<include refid="table_name"/>
 			<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -107,7 +107,7 @@
 	</delete>
 	
 	<!-- 修改单条记录 -->
-	<update id="update" parameterType="User">
+	<update id="update" parameterType="user">
 		update
 			<include refid="table_name"/>
 			<set>

@@ -10,7 +10,7 @@
 	<sql id="table_clumns"> id,userid,name </sql>
 	
 	<!-- 结果映射关系 -->
-	<resultMap id="BookResultMap" type="Book">
+	<resultMap id="BookResultMap" type="book">
 		<id column="b_id" property="id"/>
 		<result column="userid" property="userid"/>
 		<result column="name" property="name"/>
@@ -58,7 +58,7 @@
 	</select>
 	
 	<!-- 插入单条记录 -->
-	<insert id="insert" parameterType="Book">
+	<insert id="insert" parameterType="book">
 		insert into
 			<include refid="table_name"/>
 			<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -80,7 +80,7 @@
 	</delete>
 	
 	<!-- 修改单条记录 -->
-	<update id="update" parameterType="Book">
+	<update id="update" parameterType="book">
 		update
 			<include refid="table_name"/>
 			<set>

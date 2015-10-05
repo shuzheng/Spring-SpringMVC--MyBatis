@@ -3,9 +3,19 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<!-- mapping 文件路径配置 -->
+	<!-- 该包下的model不用写包名，会使用 model的首字母小写的非限定类名来作为它的别名，若有注解@Alias("xxx")，则别名为注解值 -->
 	<typeAliases>
-		<typeAlias alias="User" type="com.shuzheng.ssm.model.User"/>
-		<typeAlias alias="Book" type="com.shuzheng.ssm.model.Book"/>
+		<package name="com.shuzheng.ssm.model"/>
+		<!--
+		<typeAlias alias="user" type="com.shuzheng.ssm.model.User"/>
+		<typeAlias alias="book" type="com.shuzheng.ssm.model.Book"/>
+		-->
 	</typeAliases>
+	<mappers>
+		<package name="com.shuzheng.ssm.mapper"/>
+		<!--
+		<mapper resource="com/shuzheng/ssm/mapper/UserMapper.xml"/>
+		<mapper resource="com/shuzheng/ssm/mapper/BookMapper.xml"/>
+		-->
+	</mappers>
 </configuration>
