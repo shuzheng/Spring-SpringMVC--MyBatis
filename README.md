@@ -1,5 +1,5 @@
 # Spring-SpringMVC--MyBatis
-Spring、SpringMVC、MyBatis、Druid持续集成中
+Spring、SpringMVC、MyBatis持续集成中
 
 希望朋友提出更好的建议！
 
