@@ -27,7 +27,7 @@ CREATE TABLE `book` (
   `userid` int(10) unsigned NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1,1,'java开发大全'),(2,1,'变形记'),(7,1,'1'),(8,1,'11'),(9,1,'111'),(11,3,'2'),(12,3,'22'),(20,1,'1111'),(21,3,'222');
+INSERT INTO `book` VALUES (1,1,'java开发大全'),(2,1,'变形记'),(7,1,'1'),(8,1,'11'),(9,1,'2111'),(11,1,'2'),(12,1,'22'),(21,1,'222'),(34,1,'1'),(36,1,'5'),(37,1,'55'),(38,1,'555'),(39,1,'123');
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `user` (
   `sex` int(11) DEFAULT NULL COMMENT '0未知,1男,2女',
   `ctime` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','123456','管理员',1,1442842557564),(3,'shuzheng','123456','张恕征',1,1442842657564),(5,'username','password','nickname',2,1442842857564);
+INSERT INTO `user` VALUES (1,'super','123456','超级管理员',1,1442842557564),(3,'admin','123456','管理员',1,1442842657564),(5,'username','password','nickname',2,1442842857564),(13,'1','1','1',2,1444128423943),(14,'2','2','2',1,1444128430529),(15,'3','3','3',1,1444128437101),(16,'4','4','4',1,1444128441996),(17,'5','5','5',1,1444128447996),(18,'6','6','6',1,1444128452133),(19,'7','7','7',1,1444128456685),(20,'8','8','8',1,1444128460581);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-01  0:52:27
+-- Dump completed on 2015-10-06 23:59:51
