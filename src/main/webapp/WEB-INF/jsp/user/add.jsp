@@ -35,6 +35,14 @@
 		<tr><td></td><td><a href="${pageContext.request.contextPath}/user">取消</a>　<input type="submit" value="保存"/></td></tr>
 	</table>
 	</form>
+	<form id="form2" action="${pageContext.request.contextPath}/user/upload" method="post" enctype="multipart/form-data">
+	<table border="1">
+		<caption>修改头像</caption>
+		<tr><td>头像：</td><td><input id="file" type="file" name="file"/></td></tr>
+		</tr>
+		<tr><td></td><td><input type="submit" value="上传"/></td></tr>
+	</table>
+	</form>
 </div>
 </body>
 </html>

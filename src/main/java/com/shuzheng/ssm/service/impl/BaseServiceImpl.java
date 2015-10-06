@@ -6,48 +6,48 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shuzheng.ssm.dao.IBaseDao;
+import com.shuzheng.ssm.dao.BaseMapper;
 import com.shuzheng.ssm.service.IBaseService;
 
 @Service
 public class BaseServiceImpl<T> implements IBaseService<T> {
 
 	@Autowired
-	private IBaseDao<T> baseDao;
+	private BaseMapper<T> baseMapper;
 	
 	@Override
 	public T get(int id) {
-		return baseDao.get(id);
+		return baseMapper.get(id);
 	}
 
 	@Override
 	public long count(String condition) {
-		return baseDao.count(condition);
+		return baseMapper.count(condition);
 	}
 
 	@Override
 	public List<T> getAll(Map<String,Object> parameters) {
-		return baseDao.getAll(parameters);
+		return baseMapper.getAll(parameters);
 	}
 
 	@Override
 	public void insert(T t) {
-		baseDao.insert(t);
+		baseMapper.insert(t);
 	}
 
 	@Override
 	public void insertAutoKey(T t) {
-		baseDao.insertAutoKey(t);
+		baseMapper.insertAutoKey(t);
 	}
 
 	@Override
 	public void delete(int id) {
-		baseDao.delete(id);
+		baseMapper.delete(id);
 	}
 
 	@Override
 	public void update(T t) {
-		baseDao.update(t);
+		baseMapper.update(t);
 	}
 
 }

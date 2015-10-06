@@ -36,7 +36,9 @@ public class BookController {
 	/**
 	 * 书籍列表
 	 * @param id
-	 * @param model
+	 * @param page
+	 * @param rows
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/list/{id}", method = RequestMethod.GET)

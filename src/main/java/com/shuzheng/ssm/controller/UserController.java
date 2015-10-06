@@ -1,5 +1,7 @@
 package com.shuzheng.ssm.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.IUserService;
+import com.shuzheng.ssm.util.DateUtil;
 import com.shuzheng.ssm.util.Paginator;
 
 @Controller
@@ -42,7 +47,9 @@ public class UserController {
 	
 	/**
 	 * 列表
-	 * @param model
+	 * @param page
+	 * @param rows
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/list")
@@ -157,6 +164,31 @@ public class UserController {
 		}
 		userService.update(user);
 		return "redirect:/user/list";
+	}
+	
+	/**
+	 * 上传文件
+	 * @param file
+	 * @param request
+	 * @return
+	 * @throws IOException 
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public Object upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws IOException {
+		String basePath = request.getSession().getServletContext().getRealPath("/attached");
+		String fileName = file.getOriginalFilename();
+		String savePath = basePath + "/images/" + DateUtil.getNow("yyyyMMdd");
+		File targetFile = new File(savePath, fileName);
+		if (!targetFile.exists()) {
+			targetFile.mkdirs();
+		}
+		file.transferTo(targetFile);
+		System.out.println(targetFile.getAbsolutePath());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", "success");
+		map.put("data", targetFile.getAbsoluteFile());
+		return map;
 	}
 	
 }

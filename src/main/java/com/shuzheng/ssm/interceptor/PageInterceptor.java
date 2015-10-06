@@ -43,10 +43,15 @@ public class PageInterceptor implements Interceptor {
 			// 原始的SQL语句
 			String sql = boundSql.getSql();
 			Map<?, ?> parameter = (Map<?, ?>) boundSql.getParameterObject();
-			Paginator paginator = (Paginator) parameter.get("paginator");
-			// 改造后带分页查询的SQL语句
-			String pageSql = sql + " limit " + (paginator.getPage() - 1) * paginator.getRows() + "," + paginator.getRows();
-			metaObject.setValue("delegate.boundSql.sql", pageSql);
+			// 有参数对象才能进行
+			if (parameter != null) {
+				Paginator paginator = (Paginator) parameter.get("paginator");
+				// 有分页对象，则改造为带分页查询的SQL语句
+				if (paginator != null) {
+					String pageSql = sql + " limit " + (paginator.getPage() - 1) * paginator.getRows() + "," + paginator.getRows();
+					metaObject.setValue("delegate.boundSql.sql", pageSql);
+				}
+			}
 		}
 		return invocation.proceed();
 	}

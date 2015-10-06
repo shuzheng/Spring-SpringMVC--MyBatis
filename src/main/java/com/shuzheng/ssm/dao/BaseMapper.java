@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IBaseDao<T> {
+public interface BaseMapper<T> {
 
 	T get(int id);
 

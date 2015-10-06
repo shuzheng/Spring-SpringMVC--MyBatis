@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/shuzheng/ssm/dao/IBaseDao.java=UTF-8
-encoding//src/main/java/com/shuzheng/ssm/dao/IBookDao.java=UTF-8
-encoding//src/main/java/com/shuzheng/ssm/dao/IUserDao.java=UTF-8
+encoding//src/main/java/com/shuzheng/ssm/dao/BaseMapper.java=UTF-8
+encoding//src/main/java/com/shuzheng/ssm/dao/BookMapper.java=UTF-8
+encoding//src/main/java/com/shuzheng/ssm/dao/UserMapper.java=UTF-8
 encoding//src/main/java/com/shuzheng/ssm/mapper/BookMapper.xml=UTF-8
 encoding//src/main/java/com/shuzheng/ssm/mapper/UserMapper.xml=UTF-8
 encoding//src/main/java/com/shuzheng/ssm/model/Book.java=UTF-8
