@@ -50,7 +50,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="pages">${paginator.html}</div>
 </div>
-${paginator}
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.shuzheng.ssm.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -18,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.UserServiceI;
-import com.shuzheng.ssm.util.Page;
 import com.shuzheng.ssm.util.Paginator;
 
 @Controller
@@ -28,7 +29,7 @@ public class UserController {
 	private static Log log = LogFactory.getLog(UserController.class);
 	
 	@Autowired
-	private UserServiceI<User> userService;
+	private UserServiceI userService;
 
 	/**
 	 * 首页
@@ -47,17 +48,30 @@ public class UserController {
 	@RequestMapping("/list")
 	public String list(
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int size,
+			@RequestParam(required = false, defaultValue = "10") int rows,
 			HttpServletRequest request) {
+		// 查询参数
+		String clumns = " * ";
+		String condition = " id>0 ";
+		String order = " id asc ";
+		Map<String,Object> parameters = new HashMap<String, Object>();
+		parameters.put("clumns", clumns);
+		parameters.put("condition", condition);
+		parameters.put("order", order);
 		// 创建分页对象
-		Page pageBean = new Page();
-		pageBean.setCurrentPage(page);
-		pageBean.setPageNumber(size);
-		List<User> users = userService.getAll(pageBean);
-		// 创建分页html
-		String paginator = Paginator.getSimplePages(pageBean.getTotalNumber(), size, 5, page, request, "page");
+		long total = userService.count(condition);
+		Paginator paginator = new Paginator();
+		paginator.setTotal(total);
+		paginator.setPage(page);
+		paginator.setRows(rows);
+		paginator.setParam("page");
+		paginator.setUrl(request.getRequestURI());
+		paginator.setQuery(request.getQueryString());
+		// 调用有分页功能的方法
+		parameters.put("paginator", paginator);
+		List<User> users = userService.getAll(parameters);
+		// 返回数据
 		request.setAttribute("users", users);
-		request.setAttribute("pageBean", pageBean);
 		request.setAttribute("paginator", paginator);
 		return "/user/list";
 	}
@@ -82,6 +96,7 @@ public class UserController {
 		if (binding.hasErrors()) {
 			return "user/add";
 		}
+		user.setCtime(System.currentTimeMillis());
 		userService.insert(user);
 		return "redirect:/user/list";
 	}
@@ -97,6 +112,7 @@ public class UserController {
 		if (binding.hasErrors()) {
 			return "user/add";
 		}
+		user.setCtime(System.currentTimeMillis());
 		userService.insertAutoKey(user);
 		System.out.println(user.getId());
 		return "redirect:/user/list";

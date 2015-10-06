@@ -18,7 +18,7 @@
 </div>
 <div id="main">
 	<table id="datagrid" class="datagrid" border="1">
-		<caption><i class="fa fa-list-ol"></i> 书籍列表 <a href="${pageContext.request.contextPath}/book/add/${user.id}">添加</a></caption>
+		<caption><i class="fa fa-list-ol"></i> 书籍列表 <a href="${pageContext.request.contextPath}/book/add/${id}">添加</a></caption>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -27,7 +27,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="book" items="${user.books}">
+			<c:forEach var="book" items="${books}">
 			<tr>
 				<td>${book.id}</td>
 				<td>${book.name}</td>
@@ -39,6 +39,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="pages">${paginator.html}</div>
 </div>
 </body>
 </html>

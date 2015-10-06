@@ -84,7 +84,7 @@ audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel{backgro
 
 .pages{text-align:center;margin:20px auto 100px;}
 	.pages a, .pages span{padding:8px 15px;margin:0 5px;border-radius:4px;}
-	.pages a{color:#333;-webkit-transition-duration:.5s;-webkit-transition-timing-function:ease;border:1px solid #b7b7b7;/*background:-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));*/}
+	.pages a{color:#333;border:1px solid #b7b7b7;}
 	.pages a:hover{background:#fafafa;}
 	.pages a:active{background:#eee;/*-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));*/}
 	.pages span{border:1px solid #ddd;color:#999;}

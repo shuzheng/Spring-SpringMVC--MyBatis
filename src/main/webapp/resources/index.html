@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1.0,user-scalable=no" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<link rel="stylesheet" type="text/css" href="images/main.css?v=1"/>
+<title>录音</title>
+</head>
+<body>
+<input type="file" accept="image/*" capture="camera">
+<input type="file" accept="video/*" capture="camcorder">
+<input type="file" accept="audio/*" capture="microphone">
+<input type="file" accept="image/*" multiple>
+<form action="server.cgi" method="post" enctype="multipart/form-data">
+  <input type="file" name="audio" accept="audio/*" capture>
+  <input type="submit" value="Upload">
+</form>
+</body>
+</html>

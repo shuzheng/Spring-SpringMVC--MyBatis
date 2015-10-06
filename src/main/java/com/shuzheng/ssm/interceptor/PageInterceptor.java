@@ -1,12 +1,9 @@
 package com.shuzheng.ssm.interceptor;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -18,10 +15,13 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 
-import com.shuzheng.ssm.util.Page;
+import com.shuzheng.ssm.util.Paginator;
 
 /**
+ * 
  * 分页拦截器
+ * @author shuzheng
+ *
  */
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
 public class PageInterceptor implements Interceptor {
@@ -30,30 +30,22 @@ public class PageInterceptor implements Interceptor {
 
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
+		// 拦截的对象
 		StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
+		// 通过反射拿到拦截对象的sqlid
 		MetaObject metaObject = MetaObject.forObject(statementHandler, SystemMetaObject.DEFAULT_OBJECT_FACTORY, SystemMetaObject.DEFAULT_OBJECT_WRAPPER_FACTORY);
 		MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
 		// 配置文件中SQL语句的ID
 		String id = mappedStatement.getId();
+		// 如果SQL的ID符合我们的过滤正则表达式
 		if (id.matches(pageSqlId)) {
 			BoundSql boundSql = statementHandler.getBoundSql();
 			// 原始的SQL语句
 			String sql = boundSql.getSql();
-			// 查询总条数的SQL语句
-			String countSql = "select count(*) from (" + sql + ")a";
-			Connection connection = (Connection) invocation.getArgs()[0];
-			PreparedStatement countStatement = connection.prepareStatement(countSql);
-			ParameterHandler parameterHandler = (ParameterHandler) metaObject.getValue("delegate.parameterHandler");
-			parameterHandler.setParameters(countStatement);
-			ResultSet rs = countStatement.executeQuery();
-
 			Map<?, ?> parameter = (Map<?, ?>) boundSql.getParameterObject();
-			Page page = (Page) parameter.get("pageBean");
-			if (rs.next()) {
-				page.setTotalNumber(rs.getInt(1));
-			}
+			Paginator paginator = (Paginator) parameter.get("paginator");
 			// 改造后带分页查询的SQL语句
-			String pageSql = sql + " limit " + page.getDbIndex() + "," + page.getDbNumber();
+			String pageSql = sql + " limit " + (paginator.getPage() - 1) * paginator.getRows() + "," + paginator.getRows();
 			metaObject.setValue("delegate.boundSql.sql", pageSql);
 		}
 		return invocation.proceed();
@@ -61,11 +53,13 @@ public class PageInterceptor implements Interceptor {
 
 	@Override
 	public Object plugin(Object target) {
+		// 拦截的对象是否需要代理，如果是则执行intercept方法增强，不是则直接放行
 		return Plugin.wrap(target, this);
 	}
 
 	@Override
 	public void setProperties(Properties properties) {
+		// 初始化拦截器的配置
 		this.pageSqlId = properties.getProperty("pageSqlId");
 	}
 

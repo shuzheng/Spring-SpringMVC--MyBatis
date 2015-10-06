@@ -27,11 +27,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!--contextConfigLocation在 ContextLoaderListener类中的默认值是 /WEB-INF/applicationContext.xml-->
-	<!-- <context-param>
+	<!--默认值是 /WEB-INF/applicationContext.xml-->
+	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
-	</context-param> -->
+	</context-param>
 	
 	<!-- 日志配置文件 -->
 	<context-param>
@@ -43,11 +43,11 @@
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里便是：springMVC-servlet.xml -->
-		<!-- <init-param>
+		<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里默认便是：springMVC-servlet.xml -->
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:springMVC-servlet.xml</param-value>
-		</init-param> -->
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

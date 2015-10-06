@@ -49,26 +49,66 @@
 			id=#{id,jdbcType=INTEGER}
 	</select>
 
-	<!-- 查询所有记录 -->
-	<select id="getAll" resultMap="BookResultMap">
+	<!-- 获取总记录 -->
+	<select id="count" resultType="long" parameterType="java.lang.String">
 		select
-			<include refid="table_clumns"/>
+			count(*)
 		from
 			<include refid="table_name"/>
+		<where>
+			<if test="_parameter!=null and _parameter!=''">${_parameter}</if>
+		</where>
+	</select>
+	
+	<!-- 查询所有记录 -->
+	<select id="getAll" resultType="book" parameterType="java.util.Map">
+		select
+			<choose>
+				<when test="clumns != null">${clumns}</when>
+				<otherwise>
+					<include refid="table_clumns"/>
+				</otherwise>
+			</choose>
+		from
+			<include refid="table_name"/>
+		<where>
+			<if test="condition != null and condition != ''">${condition}</if>
+		</where>
+		order by
+			<choose>
+				<when test="order != null and order != ''">${order}</when>
+				<otherwise>id asc</otherwise>
+			</choose>
 	</select>
 	
 	<!-- 插入单条记录 -->
 	<insert id="insert" parameterType="book">
 		insert into
 			<include refid="table_name"/>
-			<trim prefix="(" suffix=")" suffixOverrides=",">
-				<if test="userid != null">userid,</if>
-				<if test="name != null">name,</if>
-			</trim>
-			<trim prefix="values (" suffix=")" suffixOverrides=",">
-				<if test="userid != null">#{userid,jdbcType=INTEGER},</if>
-				<if test="name != null">#{name,jdbcType=VARCHAR},</if>
-			</trim>
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userid != null">userid,</if>
+			<if test="name != null">name,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userid != null">#{userid,jdbcType=INTEGER},</if>
+			<if test="name != null">#{name,jdbcType=VARCHAR},</if>
+		</trim>
+	</insert>
+	
+	<!-- 插入单条记录，插入前建好id索引 -->
+	<insert id="insertAutoKey" useGeneratedKeys="true" keyProperty="id" parameterType="book">
+		insert into
+			<include refid="table_name"/>
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">id,</if>
+			<if test="userid != null">userid,</if>
+			<if test="name != null">name,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id,jdbcType=INTEGER},</if>
+			<if test="userid != null">#{userid,jdbcType=INTEGER},</if>
+			<if test="name != null">#{name,jdbcType=VARCHAR},</if>
+		</trim>
 	</insert>
 	
 	<!-- 根据id删除单条记录 -->
@@ -83,10 +123,10 @@
 	<update id="update" parameterType="book">
 		update
 			<include refid="table_name"/>
-			<set>
-				<if test="userid != null">userid=#{userid,jdbcType=INTEGER},</if>
-				<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
-			</set>
+		<set>
+			<if test="userid != null">userid=#{userid,jdbcType=INTEGER},</if>
+			<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+		</set>
 		where
 			id=#{id,jdbcType=INTEGER}
 	</update>
