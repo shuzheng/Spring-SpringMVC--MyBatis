@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuzheng.ssm.model.User;
-import com.shuzheng.ssm.service.UserServiceI;
+import com.shuzheng.ssm.service.IUserService;
 import com.shuzheng.ssm.util.Paginator;
 
 @Controller
@@ -29,7 +29,7 @@ public class UserController {
 	private static Log log = LogFactory.getLog(UserController.class);
 	
 	@Autowired
-	private UserServiceI userService;
+	private IUserService userService;
 
 	/**
 	 * 首页

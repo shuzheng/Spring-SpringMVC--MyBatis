@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.shuzheng.ssm.model.User;
-import com.shuzheng.ssm.service.UserServiceImpl;
+import com.shuzheng.ssm.service.impl.UserServiceImpl;
 
 //告诉DispatcherServlet相关的容器， 这是一个Controller， 管理好这个bean哦
 @Controller

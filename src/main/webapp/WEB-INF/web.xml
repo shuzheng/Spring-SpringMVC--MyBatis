@@ -30,7 +30,7 @@
 	<!--默认值是 /WEB-INF/applicationContext.xml-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml</param-value>
+		<param-value>classpath:spring.xml</param-value>
 	</context-param>
 	
 	<!-- 日志配置文件 -->
@@ -46,7 +46,7 @@
 		<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里默认便是：springMVC-servlet.xml -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springMVC-servlet.xml</param-value>
+			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

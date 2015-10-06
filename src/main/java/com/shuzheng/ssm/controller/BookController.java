@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuzheng.ssm.model.Book;
 import com.shuzheng.ssm.model.User;
-import com.shuzheng.ssm.service.BookServiceI;
-import com.shuzheng.ssm.service.UserServiceI;
+import com.shuzheng.ssm.service.IBookService;
+import com.shuzheng.ssm.service.IUserService;
 import com.shuzheng.ssm.util.Paginator;
 
 @Controller
@@ -31,7 +31,7 @@ public class BookController {
 	private static Log log = LogFactory.getLog(UserController.class);
 	
 	@Autowired
-	private BookServiceI bookService;
+	private IBookService bookService;
 	
 	/**
 	 * 书籍列表

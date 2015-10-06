@@ -1,4 +1,4 @@
-package com.shuzheng.ssm.service;
+package com.shuzheng.ssm.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -6,47 +6,48 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shuzheng.ssm.mapper.BaseMapper;
+import com.shuzheng.ssm.dao.IBaseDao;
+import com.shuzheng.ssm.service.IBaseService;
 
 @Service
-public class BaseServiceImpl<T> implements BaseServiceI<T> {
+public class BaseServiceImpl<T> implements IBaseService<T> {
 
 	@Autowired
-	private BaseMapper<T> baseMapper;
+	private IBaseDao<T> baseDao;
 	
 	@Override
 	public T get(int id) {
-		return baseMapper.get(id);
+		return baseDao.get(id);
 	}
 
 	@Override
 	public long count(String condition) {
-		return baseMapper.count(condition);
+		return baseDao.count(condition);
 	}
 
 	@Override
 	public List<T> getAll(Map<String,Object> parameters) {
-		return baseMapper.getAll(parameters);
+		return baseDao.getAll(parameters);
 	}
 
 	@Override
 	public void insert(T t) {
-		baseMapper.insert(t);
+		baseDao.insert(t);
 	}
 
 	@Override
 	public void insertAutoKey(T t) {
-		baseMapper.insertAutoKey(t);
+		baseDao.insertAutoKey(t);
 	}
 
 	@Override
 	public void delete(int id) {
-		baseMapper.delete(id);
+		baseDao.delete(id);
 	}
 
 	@Override
 	public void update(T t) {
-		baseMapper.update(t);
+		baseDao.update(t);
 	}
 
 }

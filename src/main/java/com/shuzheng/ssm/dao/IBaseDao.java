@@ -1,10 +1,13 @@
-package com.shuzheng.ssm.service;
+package com.shuzheng.ssm.dao;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BaseServiceI<T> {
-	
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface IBaseDao<T> {
+
 	T get(int id);
 
 	long count(String condition);
