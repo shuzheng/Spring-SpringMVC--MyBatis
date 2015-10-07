@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css?v=201509231"/>
-<title>用户列表</title>
+<title><fmt:message key="${user.list}"/></title>
 </head>
 <body>
 <div class="breadcrumb">

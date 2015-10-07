@@ -26,7 +26,6 @@
 	<!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理 -->
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	
-	<!-- 视图 -->
 	<!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<!-- 顺序优先级 -->
@@ -59,6 +58,8 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- Jsp视图 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -66,11 +67,19 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<!-- i18n国际化
+	<!-- i18n国际化 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages"/>
-		<property name="defaultEncoding" value="UTF-8"/>
+		<!-- 编码 -->
+		<!-- 找不到key时用key作为返回值 -->
+		<property name="useCodeAsDefaultMessage" value="true"/>
+		<!-- 资源刷新时间 -->
+		<property name="cacheSeconds" value="5"/>
+		<!-- 资源文件列表 -->
+		<property name="basenames">
+			<list><value>classpath:messages</value></list>
+		</property>
 	</bean>
+	<!-- 
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="lang"/>
 	</bean>
@@ -88,6 +97,16 @@
 		</property>
 	</bean>
 	 -->
+	
+	<!-- 拦截器配置 -->
+	<mvc:interceptors>
+		<!-- 后台拦截器 -->
+		<mvc:interceptor>
+		 	<mvc:mapping path="/manage/**"/>
+		 	<mvc:exclude-mapping path="/manage/login"/>
+		 	<bean id="manageInterceptor" class="com.shuzheng.ssm.interceptor.ManageInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	<!--20*1024*1024即20M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
