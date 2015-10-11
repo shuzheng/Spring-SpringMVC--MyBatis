@@ -26,8 +26,10 @@ CREATE TABLE `book` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userid` int(10) unsigned NOT NULL,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `FK_book_1` (`userid`),
+  CONSTRAINT `FK_book_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +66,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'super','123456','超级管理员',1,1442842557564),(3,'admin','123456','管理员',1,1442842657564),(5,'username','password','nickname',2,1442842857564),(13,'1','1','1',2,1444128423943),(14,'2','2','2',1,1444128430529),(15,'3','3','3',1,1444128437101),(16,'4','4','4',1,1444128441996),(17,'5','5','5',1,1444128447996),(18,'6','6','6',1,1444128452133),(19,'7','7','7',1,1444128456685),(20,'8','8','8',1,1444128460581);
+INSERT INTO `user` VALUES (1,'super','123456','超级管理员',1,1442842557564),(3,'admin','123456','管理员',1,1442842657564),(5,'username','password','nickname',2,1442842857564),(13,'1','1','1',2,1444128423943),(14,'2','2','2',1,1444128430529),(15,'3','3','3',1,1444128437101),(16,'4','4','4',1,1444128441996);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-06 23:59:51
+-- Dump completed on 2015-10-11 18:00:44
