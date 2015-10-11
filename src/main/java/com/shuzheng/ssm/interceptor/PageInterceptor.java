@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -26,6 +28,7 @@ import com.shuzheng.ssm.util.Paginator;
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
 public class PageInterceptor implements Interceptor {
 
+	private static Log log = LogFactory.getLog(PageInterceptor.class);
 	private String pageSqlId;
 
 	@Override

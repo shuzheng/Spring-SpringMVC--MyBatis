@@ -87,16 +87,16 @@
 		<property name="defaultLocale" value="zh_CN"/>
 	</bean> -->
 	
-	<!-- 启用基于注解的处理器映射，添加拦截器，类级别的处理器映射 -->
-	<!-- 
-	<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<property name="interceptors">
-			<list>
-				<ref bean="localeChangeInterceptor"/>
-			</list>
-		</property>
+	<!-- 全局异常处理 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="error"/>
+		<property name="exceptionAttribute" value="exception"/>
+		<!--<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>-->
 	</bean>
-	 -->
 	
 	<!-- 拦截器配置 -->
 	<mvc:interceptors>

@@ -45,13 +45,13 @@
 		<property name="filters" value="stat" />
 	</bean>
 
-	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<!-- 为Mybatis创建SqlSessionFactory，同时指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 导入mybatis配置文件，mybatis-config.xml -->
 		<property name="configLocation" value="classpath:spring-mybatis.xml"/>
 		<property name="mapperLocations" value="classpath:com/shuzheng/ssm/mapper/*.xml"/>
-		<!--<property name="typeAliasesPackage" value="com.shuzheng.ssm.model"/>-->
+		<property name="typeAliasesPackage" value="com.shuzheng.ssm.model"/>
 	</bean>
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -72,7 +72,7 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.impl.*ServiceImpl.*(..))" advice-ref="txAdvice" />
+		<aop:advisor pointcut="execution(* com.shuzheng.ssm.service.*.*(..))" advice-ref="txAdvice" />
 	</aop:config>
 	
 </beans>
