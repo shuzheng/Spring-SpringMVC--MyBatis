@@ -89,13 +89,13 @@
 	
 	<!-- 全局异常处理 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="error"/>
+		<property name="defaultErrorView" value="/error"/>
 		<property name="exceptionAttribute" value="exception"/>
-		<!--<property name="exceptionMappings">
+		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.Exception">error</prop>
+				<prop key="java.lang.Exception">/error</prop>
 			</props>
-		</property>-->
+		</property>
 	</bean>
 	
 	<!-- 拦截器配置 -->

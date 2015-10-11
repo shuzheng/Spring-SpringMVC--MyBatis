@@ -29,7 +29,7 @@ import com.shuzheng.ssm.util.Paginator;
 
 @Controller
 @RequestMapping("/user")
-public class UserController extends ApplicationController {
+public class UserController {
 	
 	private static Log log = LogFactory.getLog(UserController.class);
 	

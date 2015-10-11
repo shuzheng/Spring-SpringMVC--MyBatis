@@ -26,7 +26,7 @@ import com.shuzheng.ssm.util.Paginator;
 
 @Controller
 @RequestMapping("/book")
-public class BookController extends ApplicationController {
+public class BookController {
 	
 	private static Log log = LogFactory.getLog(UserController.class);
 	

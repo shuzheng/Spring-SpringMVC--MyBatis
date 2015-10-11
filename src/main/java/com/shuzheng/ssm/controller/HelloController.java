@@ -32,7 +32,7 @@ import com.shuzheng.ssm.service.impl.UserServiceImpl;
 // 类级别的RequestMapping，告诉DispatcherServlet由这个类负责处理以跟URL。
 // HandlerMapping依靠这个标签来工作
 @RequestMapping("/hello")
-public class HelloController extends ApplicationController {
+public class HelloController {
 
 	private static Log log = LogFactory.getLog(HelloController.class);
 
