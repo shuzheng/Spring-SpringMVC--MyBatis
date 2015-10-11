@@ -31,12 +31,12 @@
 		<!-- 顺序优先级 -->
 		<property name="order" value="1" />
 		<!-- 扩展名至mimeType的映射,即 /user.json => application/json 默认：true -->
-		<property name= "favorPathExtension" value= "true" />
+		<property name="favorPathExtension" value= "true" />
 		<!-- 参数用于开启 /userinfo/123?format=json 的支持 -->
-		<property name= "favorParameter" value="true"/>
-		<property name= "parameterName" value="format"/>
+		<property name="favorParameter" value="true"/>
+		<property name="parameterName" value="format"/>
 		<!-- 是否忽略Accept Header -->
-		<property name= "ignoreAcceptHeader" value="false"/>
+		<property name="ignoreAcceptHeader" value="false"/>
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json"/>
@@ -76,16 +76,14 @@
 		<property name="cacheSeconds" value="5"/>
 		<!-- 资源文件列表 -->
 		<property name="basenames">
-			<list><value>classpath:messages</value></list>
+			<list><value>classpath:i18n/messages</value></list>
 		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
-	<!-- 
+	<!-- 基于请求的国际化配置是指，在当前请求内，国际化配置生效，否则自动以浏览器为主 -->
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="lang"/>
 	</bean>
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="zh_CN"/>
-	</bean> -->
 	
 	<!-- 全局异常处理 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
