@@ -80,10 +80,6 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
-	<!-- 基于请求的国际化配置是指，在当前请求内，国际化配置生效，否则自动以浏览器为主 -->
-	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="lang"/>
-	</bean>
 	
 	<!-- 全局异常处理 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
