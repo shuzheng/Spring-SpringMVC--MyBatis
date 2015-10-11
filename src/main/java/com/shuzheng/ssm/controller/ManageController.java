@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/manage")
-public class ManageController {
+public class ManageController extends ApplicationController {
 
 	private static Log log = LogFactory.getLog(ManageController.class);
 	

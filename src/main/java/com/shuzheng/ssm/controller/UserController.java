@@ -29,7 +29,7 @@ import com.shuzheng.ssm.util.Paginator;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends ApplicationController {
 	
 	private static Log log = LogFactory.getLog(UserController.class);
 	
@@ -176,6 +176,21 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public Object upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws IOException {
+		// 返回结果
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 判断上传文件类型
+		String contentType = file.getContentType().toLowerCase();
+		if ((!contentType.equals("image/jpeg")) && 
+				(!contentType.equals("image/pjpeg")) && 
+				(!contentType.equals("image/png")) && 
+				(!contentType.equals("image/x-png")) && 
+				(!contentType.equals("image/bmp")) && 
+				(!contentType.equals("image/gif"))) {
+			map.put("result", "failed");
+			map.put("data", "不支持该类型的文件！");
+			return map;
+		}
+		// 创建图片目录
 		String basePath = request.getSession().getServletContext().getRealPath("/attached");
 		String fileName = file.getOriginalFilename();
 		String savePath = basePath + "/images/" + DateUtil.getNow("yyyyMMdd");
@@ -183,9 +198,8 @@ public class UserController {
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
 		}
+		// 保存图片
 		file.transferTo(targetFile);
-		System.out.println(targetFile.getAbsolutePath());
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", "success");
 		map.put("data", targetFile.getAbsoluteFile());
 		return map;
