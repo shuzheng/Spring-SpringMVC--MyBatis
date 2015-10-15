@@ -205,4 +205,15 @@ public class UserController {
 		return map;
 	}
 	
+	/**
+	 * ajax
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/ajax/{id}", method = RequestMethod.GET)
+	public Object ajax(@PathVariable int id) {
+		return userService.get(id);
+	}
+	
 }

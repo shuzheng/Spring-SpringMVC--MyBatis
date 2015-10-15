@@ -10,6 +10,12 @@
 <title>后台首页</title>
 </head>
 <body>
+
+
+
+
+
+<!-- 
 <div class="breadcrumb">
 	<span class="crust"><a href="${pageContext.request.contextPath}/" class="crumb">首页</a><span class="arrow"><span>&gt;</span></span></span>
 	<span class="crust"><a href="" class="crumb">后台首页</a><span class="arrow"><span>&gt;</span></span></span>
@@ -17,5 +23,6 @@
 <div id="main">
 	欢迎登录后台！<a href="${pageContext.request.contextPath}/manage/logout">退出登录</a>
 </div>
+ -->
 </body>
 </html>

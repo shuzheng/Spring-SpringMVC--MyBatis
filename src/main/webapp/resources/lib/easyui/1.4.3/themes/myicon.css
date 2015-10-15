@@ -1,0 +1,145 @@
+.icon-none{
+	background:none;
+}
+.icon-logo{
+	background:url('myicon/logo.png') no-repeat;
+}
+.icon-home{
+	background:url('myicon/home.png') no-repeat;
+}
+.icon-login{
+	background:url('myicon/login.gif') no-repeat;
+}
+.icon-about{
+	background:url('myicon/about.png') no-repeat;
+}
+.icon-phone{
+	background:url('myicon/phone.png') no-repeat;
+}
+.icon-functions{
+	background:url('myicon/functions.png') no-repeat;
+}
+.icon-opera{
+	background:url('myicon/opera.png') no-repeat;
+}
+.icon-baseset{
+	background:url('myicon/baseset.png') no-repeat;
+}
+.icon-superset{
+	background:url('myicon/superset.png') no-repeat;
+}
+.icon-data{
+	background:url('myicon/data.png') no-repeat;
+}
+.icon-update-pwd{
+	background:url('myicon/update_pwd.png') no-repeat;
+}
+.icon-exit{
+	background:url('myicon/exit.png') no-repeat;
+}
+.icon-submit{
+	background:url('myicon/submit.png') no-repeat;
+}
+
+.icon-news{
+	background:url('myicon/news.png') no-repeat;
+}
+.icon-newstype{
+	background:url('myicon/newstype.png') no-repeat;
+}
+.icon-newslist{
+	background:url('myicon/newslist.png') no-repeat;
+}
+.icon-images{
+	background:url('myicon/images.png') no-repeat;
+}
+.icon-imagestype{
+	background:url('myicon/imagestype.png') no-repeat;
+}
+.icon-imageslist{
+	background:url('myicon/imageslist.png') no-repeat;
+}
+.icon-ads{
+	background:url('myicon/ads.png') no-repeat;
+}
+.icon-adslist{
+	background:url('myicon/adslist.png') no-repeat;
+}
+.icon-links{
+	background:url('myicon/links.png') no-repeat;
+}
+.icon-linkstype{
+	background:url('myicon/linkstype.png') no-repeat;
+}
+.icon-linkstxt{
+	background:url('myicon/linkstxt.png') no-repeat;
+}
+.icon-linksimg{
+	background:url('myicon/linksimg.png') no-repeat;
+}
+.icon-userinfo{
+	background:url('myicon/userinfo.png') no-repeat;
+}
+.icon-webinfo{
+	background:url('myicon/webinfo.png') no-repeat;
+}
+.icon-actionscript{
+	background:url('myicon/actionscript.png') no-repeat;
+}
+.icon-map{
+	background:url('myicon/map.png') no-repeat;
+}
+.icon-copy{
+	background:url('myicon/copy.png') no-repeat;
+}
+.icon-allEdit{
+	background:url('myicon/allEdit.png') no-repeat;
+}
+.icon-sub{
+	background:url('myicon/sub.png') no-repeat;
+}
+.icon-tree{
+	background:url('myicon/tree.gif') no-repeat;
+}
+.icon-tree_end{
+	background:url('myicon/tree_end.gif') no-repeat;
+}
+.icon-tools{
+	background:url('myicon/tools.png') no-repeat;
+}
+.icon-up{
+	background:url('myicon/up.png') no-repeat;
+}
+.icon-down{
+	background:url('myicon/down.png') no-repeat;
+}
+.icon-tag{
+	background:url('myicon/tag.png') no-repeat;
+}
+.icon-show{
+	background:url('myicon/show.png') no-repeat;
+}
+.icon-sort{
+	background:url('myicon/sort.png') no-repeat;
+}
+.icon-sort-asc{
+	background:url('myicon/sort_asc.png') no-repeat;
+}
+.icon-sort-desc{
+	background:url('myicon/sort_desc.png') no-repeat;
+}
+.icon-user{
+	background:url('myicon/user.png') no-repeat;
+}
+.icon-topic{
+	background:url('myicon/topic.png') no-repeat;
+}
+.icon-music{
+	background:url('myicon/music.png') no-repeat;
+}
+.icon-story{
+	background:url('myicon/story.png') no-repeat;
+}
+.icon-statistics{
+	background:url('myicon/statistics.png') no-repeat;
+}

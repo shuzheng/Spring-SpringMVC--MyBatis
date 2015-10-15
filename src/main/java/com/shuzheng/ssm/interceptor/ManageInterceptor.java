@@ -24,9 +24,9 @@ public class ManageInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println(">>> manage:preHandle");
+		log.info(">>> manage:preHandle");
 		String url = request.getServletPath();
-		System.out.println(">>> url:" + url);
+		log.info(">>> url:" + url);
 		if (request.getSession().getAttribute("ADMIN") != null) {
 			return true;
 		}
@@ -35,22 +35,22 @@ public class ManageInterceptor implements HandlerInterceptor {
 		if (query != null) {
 			url += "?" + query;
 		}
-		System.out.println(">>> urls:" + url);
-		System.out.println(handler.getClass());  
+		log.info(">>> urls:" + url);
+		log.info(handler.getClass());  
 	    HandlerMethod handlerMethod = (HandlerMethod) handler;  
-	    System.out.println(handlerMethod.getMethod());
+	    log.info(handlerMethod.getMethod());
 		//response.sendRedirect("/manage/login?backurl=" + URLEncoder.encode(url, "UTF-8"));
 		return true;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		System.out.println(">>> manage:postHandle");
+		log.info(">>> manage:postHandle");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		System.out.println(">>> manage:afterCompletion");
+		log.info(">>> manage:afterCompletion");
 	}
 
 }

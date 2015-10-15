@@ -1,0 +1,101 @@
+/*Easy UI bugs*/
+a{text-decoration:none;color:#333;}
+.panel-tool a,.combo-arrow{
+	opacity:1;filter:alpha(opacity=100);
+}
+.panel-tool a:hover{
+	opacity:0.7;filter:alpha(opacity=70);
+}
+.panel-tool a:active{
+	outline:none;opacity:0.5;filter:alpha(opacity=50);
+}
+.panel-body-noborder{/*表格收缩时滚动条*/
+	overflow:hidden;
+}
+
+.calendar-title span,.calendar-prevmonth,.calendar-nextmonth,.calendar-prevyear,.calendar-nextyear,.calendar-day,.calendar-menu-month,a.l-btn-plain,a:hover.l-btn-plain,.menu-active,.menu-shadow,a.m-btn-plain-active,.progressbar,.progressbar-value,a.s-btn-plain-active,.tabs li,.tabs li a.tabs-inner,.window{/*圆角*/
+	border-radius:0;-moz-border-radius-topleft:0;-moz-border-radius-topright:0;-webkit-border-top-left-radius:0;-webkit-border-top-right-radius:0;border-top-left-radius:0 0;border-top-right-radius:0 0;
+}
+
+.tree-node-hover,.combobox-item-hover{
+	background:#D0E5F5;
+}
+a.m-btn-plain-active{
+	color:#000;background:none;
+}
+.combobox-item{
+	cursor:pointer;
+}
+.menu-text a{
+	display:block;
+	width:90px;
+	color:#000;
+	text-decoration:none;
+}
+/* DIY */
+::-moz-selection{background:#3168C3;color:#FFF;text-shadow:0 0 0 #fff;} 
+::selection{background:#3168C3;color:#FFF;text-shadow:0 0 0 #fff;}
+html,body,a,img,input,button,textarea,div{
+	outline:0;text-shadow:1px 1px 1px #fff;/*filter:progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#ffffff');*/
+	
+}
+input[type="button"]{color:#666;}
+input{color:expression(this.type=="button"?"#666666":"");}
+textarea{resize:none;}
+a img{
+	-webkit-transition:-webkit-transform 0.2s ease-out;
+	-moz-transition:-moz-transform 0.2s ease-out;
+	transition:transform 0.2s ease-out;
+	border:none;
+}
+a:hover img{
+	/*-webkit-transform:rotate(360deg) scale(1.5);
+	-moz-transform:rotate(360deg) scale(1.5);
+	transform:rotate(360deg) scale(1.5);*/
+	-webkit-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	transform:rotate(360deg);
+}
+a{
+	/*-webkit-transition:all 0.3s ease-out;*/
+}
+a:hover{
+	color:#000;
+	/*-webkit-box-shadow:0 0 3px #999;*/
+}
+a:active{
+	opacity:0.7;filter:alpha(opacity=70);
+}
+.window{
+	/*-webkit-box-shadow:rgb(80, 80, 80) 0px 0px 80px;*/
+	border-radius: 4px;
+	box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
+	/*behavior: url(/cnjp/resource/css/PIE.htc);*/
+}
+.ext-button{
+	cursor:pointer;height:26px;line-height:26px;color:#333;padding:0 20px;border:1px solid #D1D1D1;background:url(extjs/images/ext_a.gif) center center repeat-x;_padding:0px 5px 0px 0px;text-decoration:none;
+}
+.ext-button:hover{
+    border:1px solid #B0CCF2;background:url(extjs/images/ext_a_hover.gif) center center repeat-x;
+}
+.ext-button:active{
+    border:1px solid #9EBAE1;background:url(extjs/images/ext_a_active.gif) center center repeat-x;
+}
+.layout-expand{
+	background:url(extjs/images/layout-expand.gif) repeat;
+}
+.tabs li.tabs-selected a.tabs-inner{
+	margin-top:1px;
+}
+.datagrid-toolbar{
+	margin-top:1px;
+}
+.tree-node,.combobox-item{
+	border:1px solid #fff;
+}
+.tree-node-hover,.combobox-item-hover{
+	border:1px dotted #8EABE4;background:#DFE8F6;
+}
+.tree-node-selected,.combobox-item-selected{
+	border:1px dotted #8EABE4;background:#CBDAF0;
+}
