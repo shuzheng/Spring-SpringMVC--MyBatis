@@ -66,6 +66,16 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 防止url显示jsessionid -->
+	<filter>
+		<filter-name>DisableUrlSessionFilter</filter-name>
+		<filter-class>com.shuzheng.ssm.filter.DisableUrlSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>DisableUrlSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- session配置 -->
 	<session-config>
 		<session-timeout>120</session-timeout>

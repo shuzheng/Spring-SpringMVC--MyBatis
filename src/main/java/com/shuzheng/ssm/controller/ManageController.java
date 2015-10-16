@@ -1,5 +1,10 @@
 package com.shuzheng.ssm.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 
@@ -48,19 +54,26 @@ public class ManageController {
 	/**
 	 * 处理登录
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+	public Object login(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam(value = "backurl", required = false) String backurl, HttpSession session) throws UnsupportedEncodingException {
+		Map<String, String> json = new HashMap<String, String>(); 
 		if (username == null || !username.equals("admin")) {
-			session.setAttribute("result", "帐号不存在！");
-			return "redirect:/manage/login";
+			json.put("result", "failed");
+			json.put("data", "该账号不存在！");
+			return json;
 		}
 		if (password == null || !password.equals("123123")) {
-			session.setAttribute("result", "密码错误！");
-			return "redirect:/manage/login";
+			json.put("result", "failed");
+			json.put("data", "密码错误！");
+			return json;
 		}
 		session.setAttribute("ADMIN", "admin");
-		return "redirect:/manage";
+		json.put("result", "success");
+		json.put("data", URLDecoder.decode(backurl, "UTF-8"));
+		return json;
 	}
 	
 	/**

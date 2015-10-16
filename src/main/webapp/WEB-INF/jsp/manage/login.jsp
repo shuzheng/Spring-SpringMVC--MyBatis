@@ -81,7 +81,7 @@ $(document).ready(function(){
 		}]
 	});
 	$('#loginForm').form({
-		url:'${pageContext.request.contextPath}/admin/login?backurl=${param.backurl}',
+		url:'${pageContext.request.contextPath}/manage/login?backurl=${param.backurl}',
 		onSubmit:function() {
 			if ($('#username').val() == '') {
 				$.messager.show({
