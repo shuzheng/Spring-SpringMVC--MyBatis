@@ -12,9 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2015-10-11
  */
 @Controller
+@RequestMapping("/application")
 public class ApplicationController {
 
 	private static Log log = LogFactory.getLog(ApplicationController.class);
+	
+	@RequestMapping("/nullpointer")
+	public String nullpointer() {
+		return "/nullpointer";
+	}
+	
+	@RequestMapping("/arithmetic")
+	public String arithmetic() {
+		return "/arithmetic";
+	}
 	
 	@RequestMapping("/error")
 	public String error() {
