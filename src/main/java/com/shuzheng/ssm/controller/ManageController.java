@@ -31,22 +31,20 @@ public class ManageController {
 	 * 首页
 	 * @return
 	 */
-	@RequestMapping("")
+	@RequestMapping(value = {"", "index"})
 	public String index(HttpSession session) {
-		if (session.getAttribute("ADMIN") == null) {
-			return "redirect:/manage/login";
-		}
 		return "/manage/index";
 	}
 	
 	/**
 	 * 登录页面
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(HttpSession session) {
+	public String login(@RequestParam(value = "backurl", required = false) String backurl, HttpSession session) throws UnsupportedEncodingException {
 		if (session.getAttribute("ADMIN") != null) {
-			return "redirect:/manage";
+			return "redirect:/" + URLDecoder.decode(backurl, "UTF-8");
 		}
 		return "/manage/login";
 	}

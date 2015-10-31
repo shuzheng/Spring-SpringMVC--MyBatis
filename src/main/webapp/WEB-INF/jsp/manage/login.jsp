@@ -12,7 +12,7 @@
 #loginForm{width:290px;margin:0 auto;}
 #loginForm div{margin-top:14px;}
 .content{width:100%;height:177px;*height:173px;overflow:hidden;padding:5px;}
-.shadow{position:absolute;width:100%;height:100%;background:#fff;z-index:9999;}
+.shadow{position:absolute;width:90%;height:90%;background:#fff;z-index:9999;}
 </style>
 </head>
 <body>
@@ -37,12 +37,11 @@
 					<img id="randimg" class="easyui-tooltip" src="http://www.xinbaby.com/randCode" title="看不清?换一个!" onclick="this.src='http://www.xinbaby.com/randCode?'+Math.random();" align="absmiddle" width="80px"/>
 					<input id="randCode" class="easyui-textbox" type="text" name="randCode" validType="length[4,4]" invalidMessage="请输入验证码！" maxlength="4" style="width:60px;height:26px;"/>
 					<label for="remember">
-						<input id="remember" type="checkbox" checked="checked">
-						<span>记住密码</span>
-					</input>
+						<input id="remember" type="checkbox" checked="checked"/>记住密码
+					</label>
 				</div>
 				<div>
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="padding:2px 0px;width:100%;background:#fafafa;" onclick="$('#loginForm').submit();">登 录</a>
+					<input class="easyui-linkbutton" data-options="iconCls:'icon-ok'" type="submit" style="padding:5px 0px;width:100%;background:#fafafa;" vlaue="登 录"/>
 				</div>
 			</form>
 		</div>
@@ -111,12 +110,12 @@ $(document).ready(function(){
 					location.reload(true);
 					return;
 				}
-				location.href='${pageContext.request.contextPath}' + json.info;
+				location.href='${pageContext.request.contextPath}' + json.data;
 				return;
 			}
 			$.messager.show({
 				title:'登录失败',
-				msg:json.info,
+				msg:json.data,
 				timeout:3000,
 				showType:'slide'
 			});

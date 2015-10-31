@@ -40,7 +40,7 @@ public class UserController {
 	 * 首页
 	 * @return
 	 */
-	@RequestMapping("")
+	@RequestMapping(value = {"", "index"})
 	public String index() {
 		return "redirect:/user/list";
 	}
