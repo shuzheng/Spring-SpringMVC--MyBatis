@@ -82,14 +82,17 @@
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 	
-	<!-- 全局异常处理 -->
+	<!-- 全局异常处理,返回的是视图，不是控制器路径 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="/application/error"/>
+		<!-- 异常对象 -->
 		<property name="exceptionAttribute" value="exception"/>
+		<!-- 默认异常视图 -->
+		<property name="defaultErrorView" value="/exception/index"/>
+		<!-- 明确异常视图 -->
 		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.ArithmeticException">/application/arithmetic</prop>
-				<prop key="java.lang.NullPointerException">/application/nullpointer</prop>
+				<prop key="java.lang.ArithmeticException">/exception/arithmetic</prop>
+				<prop key="java.lang.NullPointerException">/exception/nullpointer</prop>
 			</props>
 		</property>
 	</bean>
@@ -98,8 +101,11 @@
 	<mvc:interceptors>
 		<!-- 后台拦截器 -->
 		<mvc:interceptor>
+			<!-- 拦截路径 -->
 		 	<mvc:mapping path="/manage/**"/>
+		 	<!-- 非拦截路径 -->
 		 	<mvc:exclude-mapping path="/manage/login"/>
+		 	<!-- 拦截器对象 -->
 		 	<bean id="manageInterceptor" class="com.shuzheng.ssm.interceptor.ManageInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

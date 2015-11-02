@@ -23,9 +23,15 @@ import com.shuzheng.ssm.util.Paginator;
  * 
  * 分页拦截器
  * @author shuzheng
- *
+ * @version 2015/10/31
  */
-@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
+@Intercepts({
+	@Signature(
+		type = StatementHandler.class,
+		method = "prepare",
+		args = {Connection.class }
+	) 
+})
 public class PageInterceptor implements Interceptor {
 
 	private static Log log = LogFactory.getLog(PageInterceptor.class);

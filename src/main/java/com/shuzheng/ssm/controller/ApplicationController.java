@@ -17,19 +17,5 @@ public class ApplicationController {
 
 	private static Log log = LogFactory.getLog(ApplicationController.class);
 	
-	@RequestMapping("/nullpointer")
-	public String nullpointer() {
-		return "/nullpointer";
-	}
-	
-	@RequestMapping("/arithmetic")
-	public String arithmetic() {
-		return "/arithmetic";
-	}
-	
-	@RequestMapping("/error")
-	public String error() {
-		return "/error";
-	}
 	
 }
