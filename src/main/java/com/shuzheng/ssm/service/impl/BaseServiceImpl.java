@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shuzheng.ssm.dao.BaseMapper;
+import com.shuzheng.ssm.mapper.BaseMapper;
 import com.shuzheng.ssm.service.IBaseService;
 
 @Service

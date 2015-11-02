@@ -3,7 +3,7 @@ package com.shuzheng.ssm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shuzheng.ssm.dao.BookMapper;
+import com.shuzheng.ssm.mapper.BookMapper;
 import com.shuzheng.ssm.model.Book;
 import com.shuzheng.ssm.service.IBookService;
 

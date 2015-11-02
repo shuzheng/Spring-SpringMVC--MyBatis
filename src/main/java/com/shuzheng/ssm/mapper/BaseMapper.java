@@ -1,4 +1,4 @@
-package com.shuzheng.ssm.dao;
+package com.shuzheng.ssm.mapper;
 
 import java.util.List;
 import java.util.Map;
