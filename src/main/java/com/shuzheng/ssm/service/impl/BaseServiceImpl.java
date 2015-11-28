@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.shuzheng.ssm.mapper.BaseMapper;
 import com.shuzheng.ssm.service.IBaseService;
@@ -22,6 +23,7 @@ public class BaseServiceImpl<T> implements IBaseService<T> {
 
 	@Override
 	public long count(String condition) {
+		Assert.hasText(condition, "查询条件不能为空！");
 		return baseMapper.count(condition);
 	}
 

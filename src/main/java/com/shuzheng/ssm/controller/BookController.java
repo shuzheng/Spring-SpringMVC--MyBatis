@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuzheng.ssm.model.Book;
-import com.shuzheng.ssm.model.User;
 import com.shuzheng.ssm.service.IBookService;
-import com.shuzheng.ssm.service.IUserService;
 import com.shuzheng.ssm.util.Paginator;
 
 @Controller
