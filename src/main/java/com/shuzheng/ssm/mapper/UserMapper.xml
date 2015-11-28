@@ -17,8 +17,9 @@
 		<result column="nickname" property="nickname"/>
 		<result column="sex" property="sex"/>
 		<result column="ctime" property="ctime"/>
-		<collection property="books" ofType="Book" column="userid">
+		<collection column="userid" property="books" ofType="Book">
 			<id column="b_id" property="id"/>
+			<result column="userid" property="userid"/>
 			<result column="name" property="name"/>
 		</collection>
 	</resultMap>
