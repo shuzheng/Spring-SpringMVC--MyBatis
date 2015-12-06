@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.shuzheng</groupId>
-	<artifactId>ssm</artifactId>
+	<artifactId>shuzheng-ssm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ssm Maven Webapp</name>
 	<url>http://maven.apache.org</url>
