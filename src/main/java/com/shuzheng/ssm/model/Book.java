@@ -1,8 +1,5 @@
 package com.shuzheng.ssm.model;
 
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
@@ -15,8 +12,6 @@ public class Book {
 
 	private Integer id;
 	private Integer userid;
-	@NotEmpty(message = "书籍名称不能为空")
-	@Size(min = 6, max = 20, message = "书籍名称必须在6~20位之间")
 	private String name;
 
 	private User user;

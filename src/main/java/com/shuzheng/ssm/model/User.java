@@ -17,14 +17,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User {
 
 	private Integer id;
-	@NotEmpty(message = "帐号不能为空")
-	@Size(min = 6, max = 20, message = "帐号必须在6~20位之间")
+	@NotEmpty(message = "{user.username.null}")
+	@Size(min = 6, max = 20, message = "{user.username.length}")
 	private String username;
-	@NotEmpty(message = "密码不能为空")
-	@Size(min = 6, max = 20, message = "密码必须在6~20位之间")
 	private String password;
-	@NotEmpty(message = "昵称不能为空")
-	@Size(min = 6, max = 20, message = "昵称必须在6~20位之间")
 	private String nickname;
 	private Integer sex;
 	private Long ctime;

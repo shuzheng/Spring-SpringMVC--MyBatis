@@ -18,7 +18,11 @@
 	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数[可选] 在SpringMVC中使用JSON必须配置 -->
 	<!-- 相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter。即解决了@Controller注解的使用前提配置 -->
 	<!-- is actually rather pointless. It declares explicit support for annotation-driven MVC controllers (i.e.@RequestMapping, @Controller, etc), even though support for those is the default behaviour. -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven validator="validator"/>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+		<property name="validationMessageSource" ref="messageSource"/>
+	</bean>
 	
 	<!-- 扫描所有的controller -->
 	<context:component-scan base-package="com.shuzheng.ssm.controller"/>
@@ -72,13 +76,14 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<!-- 编码 -->
 		<!-- 找不到key时用key作为返回值 -->
-		<property name="useCodeAsDefaultMessage" value="true"/>
+		<property name="useCodeAsDefaultMessage" value="false"/>
 		<!-- 资源刷新时间 -->
-		<property name="cacheSeconds" value="5"/>
+		<property name="cacheSeconds" value="60"/>
 		<!-- 资源文件列表 -->
 		<property name="basenames">
 			<list>
 				<value>classpath:i18n/messages</value>
+				<value>classpath:org/hibernate/validator/ValidationMessages</value>
 			</list>
 		</property>
 		<property name="defaultEncoding" value="UTF-8"/>
